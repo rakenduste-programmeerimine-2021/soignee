@@ -16,6 +16,13 @@ A marketplace for clothes.
 * React
 * Node.js
 
+## Functionality
+* Add, delete, edit listings
+* Search for listings
+* Sign-up & sign-in
+* Admin view 
+* Follow a user
+* Notifications
 
 ## How to use
 Navigate to local-dev
