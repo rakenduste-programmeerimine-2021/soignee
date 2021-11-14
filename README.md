@@ -7,8 +7,8 @@ A marketplace for clothes.
 * Vladislav Priske
 * Alek-Jaan Tšern
 
-## Wireframes
-[Wireframes](wireframe)
+## Wireframe
+[Wireframe](wireframe)
 
 ## Stack - MERN
 * MongoDB
