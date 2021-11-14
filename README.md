@@ -1,9 +1,9 @@
 # soignee
 
-## Project description:
+## Project description
 A marketplace for clothes.
 
-## Team:
+## Team
 * Vladislav Priske
 * Alek-Jaan Tšern
 
