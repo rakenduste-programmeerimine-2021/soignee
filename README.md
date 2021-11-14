@@ -1,9 +1,9 @@
 # soignee
 
-## Project description:
+## Project description
 A marketplace for clothes.
 
-## Team:
+## Team
 * Vladislav Priske
 * Alek-Jaan Tšern
 
@@ -18,7 +18,7 @@ A marketplace for clothes.
 
 
 ## How to use
-* cd to local-dev
+Navigate to local-dev
 
 Run:
 * docker-compose run --rm --no-deps backend-node install
