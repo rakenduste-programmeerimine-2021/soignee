@@ -42,7 +42,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@ant-design/icons": "^4.7.0"
-  }
+  "devDependencies": {}
 }

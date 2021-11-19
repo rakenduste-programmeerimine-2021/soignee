@@ -66,7 +66,7 @@ function Album() {
                     component="img"
                     sx={{
                       // 16:9
-                      pt: '56.25%',
+                      pt: '0%',
                     }}
                     image="https://source.unsplash.com/random"
                     alt="random"
