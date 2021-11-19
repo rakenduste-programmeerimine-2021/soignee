@@ -29,8 +29,8 @@ Navigate to local-dev
 
 Run:
 * docker-compose run --rm --no-deps backend-node install
-* run docker-compose run --rm --no-deps frontend-react install
-* run docker-compose up -d
+* docker-compose run --rm --no-deps frontend-react install
+* docker-compose up -d
 
 To stop run:
 * docker-compose stop
