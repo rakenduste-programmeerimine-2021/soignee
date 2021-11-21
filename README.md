@@ -25,7 +25,7 @@ A marketplace for clothes.
 * Notifications
 
 ## How to use
-Navigate to local-dev
+Navigate to docker
 
 Run:
 * docker-compose run --rm --no-deps backend-node install
