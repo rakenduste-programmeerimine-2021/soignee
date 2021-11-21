@@ -6,20 +6,19 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Route, Link, Routes } from "react-router-dom";
 
 import Home from './pages/Home';
-import Login from './pages/Login';
+import LoginPage from './pages/LoginPage';
 import Signup from './pages/Signup';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
 function App() {
 
-
   return (
     <Router>
-      <Header/>
+      <Header />
         <Routes>
             <Route exact path="/" element={<Home/>} />
-            <Route path="/login" element={<Login/>} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<Signup/>} />
         </Routes>
       {/* <Footer/> */}

@@ -15,13 +15,12 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 
 
-export default function MenuAppBar() {
-  const [auth, setAuth] = React.useState(true);
+export default function MenuAppBar({ auth, setAuth }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
+  function handleLogout() {
+    setAuth(false);
+  }
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -80,16 +79,6 @@ export default function MenuAppBar() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to="/">LOGO</Link>
             </Typography>
-            <FormControlLabel
-            control={
-            <Switch
-                checked={auth}
-                onChange={handleChange}
-                aria-label="login switch"
-            />
-            }
-            label={auth ? 'Logout' : 'Login'}
-            />
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -129,6 +118,7 @@ export default function MenuAppBar() {
                 <MenuItem onClick={handleClose}>Account</MenuItem>
                 <MenuItem onClick={handleClose}>Add Listing</MenuItem>
                 <MenuItem onClick={handleClose}>Subscriptions</MenuItem>
+                <MenuItem onClick={handleClose}>Log Out</MenuItem>
               </Menu>
             </div>
           )}

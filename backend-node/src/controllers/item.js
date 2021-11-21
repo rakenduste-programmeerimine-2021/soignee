@@ -7,13 +7,13 @@ exports.getItems = async (req, res) => {
 }
 
 exports.createItem = async (req, res) => {
-  // Saaksite info kätta req.body -st
 
   const newItem = {
-    name: "Table",
-    quality: 99,
-    unused: true,
-    color: "blue"
+    name: req.body.name,
+    quality: req.body.quality,
+    approved: true,
+    description: req.body.description,
+    user: req.body.user
   }
 
   const createdItem = new Item(newItem)
@@ -24,7 +24,15 @@ exports.createItem = async (req, res) => {
 }
 
 exports.updateItem = async (req, res) => {
+  const { id } = req.params;
 
+  const item = await Item.findOneAndUpdate({ _id: id }, 
+    { $set: { "name": req.body.name, "quality": req.body.quality, "approved": req.body.approved, "description": req.body.description, "user": req.body.user } }, 
+    {returnOriginal: false})
+
+  if (!item) res.status(404).send("No item with that id found")
+
+  res.status(200).send(`Successfully updated the following item: \n ${item}`)
 }
 
 exports.deleteItem = async (req, res) => {

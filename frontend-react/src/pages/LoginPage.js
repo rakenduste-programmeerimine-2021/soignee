@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,24 +12,64 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState, useEffect} from 'react';
+import { Navigate } from 'react-router';
 
 const theme = createTheme();
 
-export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+// async function LoginUser(credentials) {
+//   fetch('http://localhost:8081/api/auth/login', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(credentials)
+//   }).then(res => { 
+//   // console.log(res);
+//     return res.json(); 
+//   }).then(data => console.log(data["token"]))
+  
+//   // }).then(data => {
+//   // //setToken(data);
+//   // //console.log(data);
+//   // });
+// };
+
+async function LoginUser(credentials) {
+  return fetch('http://localhost:8081/api/auth/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  })
+    .then(data => data.json())
+ }
+
+function LoginPage({ token, setToken, setAuth }) {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const authData = await LoginUser({
+      email,
+      password,
     });
-  };
+    setToken(authData["token"]);
+  }
+
+  if (token !== ""){
+    setAuth(true);
+    
+    return (
+      <Navigate to="/" />
+    )
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
         <Box
           sx={{
             marginTop: 8,
@@ -41,9 +81,9 @@ export default function SignIn() {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
+          
+          <Typography component="h1" variant="h5">Sign in</Typography>
+
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -54,6 +94,7 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={e => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -64,11 +105,12 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={e => setPassword(e.target.value)}
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth
@@ -78,11 +120,11 @@ export default function SignIn() {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
+              {/* <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
                 </Link>
-              </Grid>
+              </Grid> */}
               <Grid item>
                 <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
@@ -94,4 +136,7 @@ export default function SignIn() {
       </Container>
     </ThemeProvider>
   );
-}
+            }
+
+
+export default LoginPage;

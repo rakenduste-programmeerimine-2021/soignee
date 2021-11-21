@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -11,16 +11,17 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { CardActionArea } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const theme = createTheme();
 
-function Album() {
+function Home() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-        {/* Hero unit */}
         <Box
           sx={{
             bgcolor: 'background.paper',
@@ -29,17 +30,16 @@ function Album() {
           }}
         >
           <Container maxWidth="sm">
-            {/* <Typography
+            <Typography
               component="h1"
               variant="h2"
               align="center"
               color="text.primary"
               gutterBottom
             >
-              Album layout
-            </Typography> */}
+              soignée<br/>
+            </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                soignée<br/>
                 ADJECTIVE<br/>
                 dressed and groomed elegantly and with great care
             </Typography>
@@ -55,30 +55,31 @@ function Album() {
           </Container>
         </Box>
         <Container sx={{ py: 2 }} maxWidth="md">
-          {/* End hero unit */}
           <Grid container spacing={4}>
             {cards.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      // 16:9
-                      pt: '0%',
-                    }}
-                    image="https://source.unsplash.com/random"
-                    alt="random"
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Trackpants
-                    </Typography>
-                    <Typography>
-                      Short description
-                    </Typography>
-                  </CardContent>
+                  <CardActionArea component={Link} to={{ pathname: '/categoryView/' }} >
+                    <CardMedia
+                      component="img"
+                      sx={{
+                        // 16:9
+                        pt: '0%',
+                      }}
+                      image="https://source.unsplash.com/random"
+                      alt="random"
+                    />
+                    <CardContent sx={{ flexGrow: 1 }}>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        Trackpants
+                      </Typography>
+                      <Typography>
+                        Short description
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
                   <CardActions>
                     <Button size="small">View</Button>
                     <Button size="small">Edit</Button>
@@ -92,4 +93,4 @@ function Album() {
   );
 }
 
-export default Album;
+export default Home;
