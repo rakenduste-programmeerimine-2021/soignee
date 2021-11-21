@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Route, Link, Routes } from "react-router-dom";
 
 import Home from './pages/Home';
-import LoginPage from './pages/LoginPage';
+import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -18,7 +18,7 @@ function App() {
       <Header />
         <Routes>
             <Route exact path="/" element={<Home/>} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/login" element={<Signin />} />
             <Route path="/signup" element={<Signup/>} />
         </Routes>
       {/* <Footer/> */}

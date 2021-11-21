@@ -17,6 +17,23 @@ import { Navigate } from 'react-router';
 
 const theme = createTheme();
 
+async function handleSubmit(e, email, password) {
+  
+  console.log(e);
+  // const authData = await LoginUser({
+  //   email,
+  //   password,
+  // });
+}
+
+// if (token !== ""){
+//   setAuth(true);
+  
+//   return (
+//     <Navigate to="/" />
+//   )
+// }
+
 // async function LoginUser(credentials) {
 //   fetch('http://localhost:8081/api/auth/login', {
 //     method: 'POST',
@@ -35,37 +52,20 @@ const theme = createTheme();
 //   // });
 // };
 
-async function LoginUser(credentials) {
-  return fetch('http://localhost:8081/api/auth/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credentials)
-  })
-    .then(data => data.json())
- }
+// async function LoginUser(credentials) {
+//   return fetch('http://localhost:8081/api/auth/login', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(credentials)
+//   })
+//     .then(data => data.json())
+//  }
 
-function LoginPage({ token, setToken, setAuth }) {
+function AddListing() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  
-  const handleSubmit = async e => {
-    e.preventDefault();
-    const authData = await LoginUser({
-      email,
-      password,
-    });
-    setToken(authData["token"]);
-  }
-
-  if (token !== ""){
-    setAuth(true);
-    
-    return (
-      <Navigate to="/" />
-    )
-  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -119,18 +119,6 @@ function LoginPage({ token, setToken, setAuth }) {
             >
               Sign In
             </Button>
-            <Grid container>
-              {/* <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid> */}
-              <Grid item>
-                <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>
@@ -139,4 +127,4 @@ function LoginPage({ token, setToken, setAuth }) {
             }
 
 
-export default LoginPage;
+export default AddListing;
