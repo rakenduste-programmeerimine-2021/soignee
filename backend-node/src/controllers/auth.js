@@ -17,7 +17,8 @@ exports.login = async (req, res) => {
       id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
-      email
+      email: user.email,
+      role: user.role
     }
 
     const token = jwt.sign(userTemplate, process.env.JWT_SECRET)
@@ -34,7 +35,7 @@ exports.login = async (req, res) => {
 }
 
 exports.signup = async (req, res) => {
-  const { firstName, lastName, email, password } = req.body
+  const { firstName, lastName, email, password, role } = req.body
 
   try {
     const user = await User.findOne({ email })
@@ -52,6 +53,7 @@ exports.signup = async (req, res) => {
       lastName,
       email,
       password: hash,
+      role,
     })
 
     const savedUser = await newUser.save()

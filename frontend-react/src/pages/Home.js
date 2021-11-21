@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -12,13 +12,25 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CardActionArea } from '@mui/material';
+import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
+
+
+import AuthService from "../Auth/AuthService";
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const theme = createTheme();
 
-function Home() {
+
+function Home({setAuth}) {
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+        setAuth(AuthService.getCurrentUser);
+      }
+  }, []);
+  
+  
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -43,15 +55,28 @@ function Home() {
                 ADJECTIVE<br/>
                 dressed and groomed elegantly and with great care
             </Typography>
-            <Stack
+            {/* <Stack
               sx={{ pt: 4 }}
               direction="row"
               spacing={2}
               justifyContent="center"
             >
-              {/* <Button variant="contained">Main call to action</Button>
-              <Button variant="outlined">Secondary action</Button> */}
-            </Stack>
+              <Button variant="contained">Main call to action</Button>
+              <Button variant="outlined">Secondary action</Button>
+            </Stack> */}
+            <Box
+              component="form"
+              sx={{
+                '& > :not(style)': { m: 1, width: '100%' },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+  
+              
+              <TextField id="filled-basic" label="Search" variant="filled" />
+              
+            </Box>
           </Container>
         </Box>
         <Container sx={{ py: 2 }} maxWidth="md">
@@ -61,7 +86,7 @@ function Home() {
                 <Card
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
-                  <CardActionArea component={Link} to={{ pathname: '/categoryView/' }} >
+                  <CardActionArea component={Link} to={{ pathname: '/listing/' }} >
                     <CardMedia
                       component="img"
                       sx={{
@@ -73,16 +98,16 @@ function Home() {
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
                       <Typography gutterBottom variant="h5" component="h2">
-                        Trackpants
+                        ADIDAS
                       </Typography>
                       <Typography>
-                        Short description
+                        Windbreaker
                       </Typography>
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <Button size="small">View</Button>
                     <Button size="small">Edit</Button>
+                    <Button size="small">Delete</Button>
                   </CardActions>
                 </Card>
               </Grid>

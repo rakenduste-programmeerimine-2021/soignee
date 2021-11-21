@@ -1,4 +1,7 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router';
+
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -12,14 +15,17 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import { Link } from 'react-router-dom';
 
+import AuthService from "../Auth/AuthService";
 
-export default function MenuAppBar({ auth, setAuth }) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+export default function MenuAppBar({auth, setAuth}) {  
+  
+  const [anchorEl, setAnchorEl] = useState(null);
 
   function handleLogout() {
-    setAuth(false);
+    AuthService.logout()
+    setAuth();
+    return (<Navigate to="/login"/>)
   }
 
   const handleMenu = (event) => {
@@ -73,12 +79,13 @@ export default function MenuAppBar({ auth, setAuth }) {
   }));
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ }}>
       <AppBar position="static">
         <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to="/">LOGO</Link>
             </Typography>
+          
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -115,10 +122,11 @@ export default function MenuAppBar({ auth, setAuth }) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Account</MenuItem>
-                <MenuItem onClick={handleClose}>Add Listing</MenuItem>
-                <MenuItem onClick={handleClose}>Subscriptions</MenuItem>
-                <MenuItem onClick={handleClose}>Log Out</MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to='/profile/{user_id}'>Profile</MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to='/add-listing'>Add Listing</MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to='/subscriptions'>Subscriptions</MenuItem>
+                <MenuItem onClick={() => { handleClose(); handleLogout();}}>Log Out</MenuItem>
+                
               </Menu>
             </div>
           )}

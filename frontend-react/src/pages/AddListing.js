@@ -8,64 +8,22 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState, useEffect} from 'react';
 import { Navigate } from 'react-router';
+import { IconButton, Input } from '@mui/material';
 
 const theme = createTheme();
 
-async function handleSubmit(e, email, password) {
-  
-  console.log(e);
-  // const authData = await LoginUser({
-  //   email,
-  //   password,
-  // });
-}
-
-// if (token !== ""){
-//   setAuth(true);
-  
-//   return (
-//     <Navigate to="/" />
-//   )
-// }
-
-// async function LoginUser(credentials) {
-//   fetch('http://localhost:8081/api/auth/login', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(credentials)
-//   }).then(res => { 
-//   // console.log(res);
-//     return res.json(); 
-//   }).then(data => console.log(data["token"]))
-  
-//   // }).then(data => {
-//   // //setToken(data);
-//   // //console.log(data);
-//   // });
-// };
-
-// async function LoginUser(credentials) {
-//   return fetch('http://localhost:8081/api/auth/login', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(credentials)
-//   })
-//     .then(data => data.json())
-//  }
 
 function AddListing() {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [name, setName] = useState();
+  const [descriotion, setDescriotion] = useState();
+  const [price, setPrice] = useState();
+  const [photos, setPhotos] = useState([]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -76,55 +34,90 @@ function AddListing() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            overflow: 'hidden',
           }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          
-          <Typography component="h1" variant="h5">Sign in</Typography>
-
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        >          
+          <Typography component="h1" variant="h5">Add New Listing</Typography>
+          <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="listing"
+              label="Listing Name"
+              name="listing"
               autoFocus
-              onChange={e => setEmail(e.target.value)}
+              onChange={e => setName(e.target.value)}
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              onChange={e => setPassword(e.target.value)}
+              multiline
+              minRows={3}
+              name="description"
+              label="Description"
+              id="description"
+              onChange={e => setDescriotion(e.target.value)}
             />
-            {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /> */}
+
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              type="number"
+              name="price"
+              label="Price"
+              id="price"
+              onChange={e => setPrice(e.target.value)}
+            />
+
+
+
+            <Box
+              fullWidth
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+
+              <Input required accept="image/*" id="upload-photos" multiple type="file" sx={{
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-around',
+                margin: ' 20px auto 0',
+                cursor: 'pointer',
+              }}/>
+
+              <Box 
+                sx={{
+                  height: '120px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-around',
+                }}
+              >
+                  Photo-carousel
+              </Box>
+
+            </Box>      
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Add Listing
             </Button>
           </Box>
         </Box>
       </Container>
     </ThemeProvider>
   );
-            }
+}
 
 
 export default AddListing;
