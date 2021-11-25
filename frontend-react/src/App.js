@@ -12,6 +12,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import AddListing from './pages/AddListing';
 import Feed from "./pages/Feed";
+import Profile from "./pages/Profile";
 
 function App() {
 
@@ -27,8 +28,8 @@ function App() {
             <Route path="/login" element={<Signin auth={auth} setAuth={setAuth} />} />
             <Route path="/signup" element={<Signup/>} />
             <Route path="/add-listing" element={<AddListing/>} />
-            <Route path="/subscriptions" element={<Feed/>} />
-            <Route path="/profile/:user_id" />
+            <Route path="/feed" element={<Feed/>} />
+            <Route path="/profile/:user_id" element={<Profile/>} />
         </Routes>
         </div>
       <Footer/>
