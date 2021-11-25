@@ -20,7 +20,7 @@ import AuthService from "../Auth/AuthService";
 
 const theme = createTheme();
 
-function Signin({auth, setAuth}) {
+function Profile({auth, setAuth}) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [loginok, setLoginok] = useState(false);
@@ -111,4 +111,4 @@ function Signin({auth, setAuth}) {
             }
 
 
-export default Signin;
+export default Profile;
