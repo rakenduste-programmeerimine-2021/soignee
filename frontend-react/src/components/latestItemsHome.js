@@ -15,8 +15,6 @@ import { CardActionArea } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 function LatestItemsHome() {
     const [isLoading, setIsLoading] = useState(true);
     const [loadedItems, setLoadedItems] = useState([]);
@@ -37,33 +35,39 @@ function LatestItemsHome() {
     
     return (        
         <Grid container spacing={4}>
-            {cards.map((card) => (
-            <Grid item key={card} xs={12} sm={6} md={4}>
+            {loadedItems.map(({brandName, model, _id, price, photo}) => (
+            <Grid item key={_id} xs={12} sm={6} md={4}>
                 <Card
                 sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
-                <CardActionArea component={Link} to={{ pathname: '/item/' }} >
+                <CardActionArea component={Link} to={{ pathname: '/item/' + _id }} >
                     <CardMedia
+                    style = {{ height: 0, paddingTop: '56%'}}
                     component="img"
                     sx={{
                         // 16:9
                         pt: '0%',
                     }}
-                    image="https://source.unsplash.com/random"
-                    alt="random"
+                    image={require('../uploaded/img_1.jpg')}
+                    alt="image"
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        BRANDNAME
-                    </Typography>
-                    <Typography>
-                        Windbreaker
-                    </Typography>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {model}
+                        </Typography>
+                        <Grid>
+                            <Typography>
+                                {brandName}
+                            </Typography>
+                            <Typography>
+                                {price+'€'}
+                            </Typography>
+                        </Grid>
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small">Edit</Button>
-                    <Button size="small">Delete</Button>
+                    <Button size="small" component={Link} to={{ pathname: '/item/edit/' + _id }}>Edit</Button>
+                    <Button size="small" component={Link} to={{ pathname: '/item/delete/' + _id }}>Delete</Button>
                 </CardActions>
                 </Card>
             </Grid>

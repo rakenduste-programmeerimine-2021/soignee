@@ -9,10 +9,12 @@ exports.getItems = async (req, res) => {
 exports.createItem = async (req, res) => {
 
   const newItem = {
-    name: req.body.name,
+    brandName: req.body.brandName,
+    model: req.body.model,
     quality: req.body.quality,
-    approved: true,
     description: req.body.description,
+    photo: req.body.photo,
+    price: req.body.price,
     user: req.body.user
   }
 
