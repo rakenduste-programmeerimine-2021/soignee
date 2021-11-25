@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -18,14 +18,31 @@ import { Link } from 'react-router-dom';
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 function LatestItemsHome() {
-    return (
+    const [isLoading, setIsLoading] = useState(true);
+    const [loadedItems, setLoadedItems] = useState([]);
+
+    useEffect(() => {
+    fetch('http://localhost:8081/api/items').then(res => { 
+    return res.json(); 
+    }).then(data => {
+    console.log(data);
+    setIsLoading(false);
+    setLoadedItems(data);
+    });
+    },[])
+    
+    if (isLoading) {
+        return (<div>Laeb...</div>);
+    }
+    
+    return (        
         <Grid container spacing={4}>
             {cards.map((card) => (
             <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card
                 sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
-                <CardActionArea component={Link} to={{ pathname: '/listing/' }} >
+                <CardActionArea component={Link} to={{ pathname: '/item/' }} >
                     <CardMedia
                     component="img"
                     sx={{

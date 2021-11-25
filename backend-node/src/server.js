@@ -14,7 +14,7 @@ app.use(express.json());
 var cors = require('cors');
 app.use(cors({origin: 'http://localhost:3000'}));
 
-app.use('/api/item', itemRoutes);
+app.use('/api/items', itemRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', postsRoutes);
 
