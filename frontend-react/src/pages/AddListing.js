@@ -11,11 +11,11 @@ import AddListingForm from '../components/AddListingForm';
 const theme = createTheme();
 
 function AddListing({loginok, setLoginok}) {
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-        setLoginok(true);
-      }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem("token")) {
+  //       setLoginok(true);
+  //     }
+  // }, []);
 
   if (!loginok) {
     return (
@@ -24,11 +24,38 @@ function AddListing({loginok, setLoginok}) {
     )
   }
   
-  function itemSubmitHandler(item){
-    return axios.post('http://localhost:8081/api/items/create', {
-      item
-    });
-  }
+// function itemSubmitHandler(){
+    
+//     const brandName = "brandName"
+//     const model = "model"
+//     const quality = 10
+//     const description = "description"
+//     const photo = "photos"
+//     const price = "price"
+//     const user = "admin"
+    
+//     return axios.post('http://localhost:8081/api/items/create', {
+//       brandName,
+//       model,
+//       quality,
+//       description,
+//       photo,
+//       price,
+//       user
+//     })
+//     .then(response => {
+//       return response.data;
+//     });
+//   }
+
+function itemSubmitHandler(item) {
+  //console.log(item);
+  fetch('http://localhost:8081/api/items/create', {
+      method: 'POST',
+      body: JSON.stringify(item),
+      headers: {'Content-Type':'application/json'}
+  });
+}
 
   return (
     <ThemeProvider theme={theme}>

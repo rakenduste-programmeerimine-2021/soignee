@@ -16,11 +16,10 @@ function AddListingForm(props) {
     const [model, setModel] = useState();
     const [description, setDescription] = useState();
     const [price, setPrice] = useState();
-    const [photos, setPhotos] = useState([]);
+    const [photos, setPhotos] = useState();
+    const [userId, setUser] = useState(localStorage.id.slice(1,-1));    
 
-    const [userId, setUser] = useState(localStorage.id);    
-
-    function formSubmitHandler(e, brandName,model,quality,description,photo,price,userId){
+    function formSubmitHandler(e){
         e.preventDefault();
         
         const item = {
@@ -28,12 +27,14 @@ function AddListingForm(props) {
             "model": model,
             "quality": 10,
             "description": description,
-            "photo": photos,
+            "photo": userId+"/"+photos,
             "price": price,
             "user": userId
         }
 
-        props.onAddItem(item);
+
+
+        // props.onAddItem(item);
     }
 
     return(
@@ -47,7 +48,7 @@ function AddListingForm(props) {
           }}
         >        
           <Typography component="h1" variant="h5">Add New Listing</Typography>
-          <Box component="form" noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={formSubmitHandler} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -98,17 +99,18 @@ function AddListingForm(props) {
                 alignItems: 'center',
               }}
             >
-
-              <Input required accept="image/*" id="upload-photos" multiple type="file" sx={{
+                <Input required accept="image/*" id="upload-photos" multiple type="file" sx={{
                 width: '100%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-around',
                 margin: ' 20px auto 0',
                 cursor: 'pointer',
-              }}/>
+                }}
+                onChange={e => setPhotos(e.target.value.replace(/^.*[\\\/]/, ''))}
+                />
 
-              <Box 
+              {/* <Box 
                 sx={{
                   height: '120px',
                   display: 'flex',
@@ -117,8 +119,7 @@ function AddListingForm(props) {
                 }}
               >
                   Photo-carousel
-              </Box>
-
+              </Box> */}
             </Box>      
             <Button
               type="submit"
