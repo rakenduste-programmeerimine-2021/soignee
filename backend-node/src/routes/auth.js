@@ -26,14 +26,14 @@ router.post(
       .withMessage("Must be at least 3 characters long")
       .trim()
       .exists()
-      .matches(/^[a-züõöäA-ÜÕÄÖZ,.'-]+[ ]?([a-züõöäA-ÜÕÄÖZ,.'-])+$/)
+      .matches(/^[a-zžüõöäA-ÜÕÄÖZŽ,.'-]+[ ]?([a-žzüõöäA-ZÜÕÄÖŽ,.'-])+$/)
       .withMessage("Must be alphabetic"),
     check("lastName")
       .isLength({ min: 3 })
       .withMessage("Must be at least 3 characters long")
       .trim()
       .exists()
-      .matches(/^[A-ZÕÄÖÜa-zõäöü,.'-]+$/)
+      .matches(/^[A-ZÕÄÖÜŽa-zžõäöü,.'-]+$/)
       .withMessage("Must be alphabetic"),
     check("email")
       .isEmail()

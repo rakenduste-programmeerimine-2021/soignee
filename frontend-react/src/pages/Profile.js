@@ -17,15 +17,19 @@ import { Navigate } from 'react-router';
 import { borders } from '@mui/system';
 
 import AuthService from "../Auth/AuthService";
+import ProfileInfo from '../components/ProfileInfo';
+import ProfileItems from '../components/ProfileItems';
 
 const theme = createTheme();
 
 function Profile() {
   return (
       <>
+        <ProfileInfo />
+        <ProfileItems />
       </>
     );
-            }
+}
 
 
 export default Profile;
