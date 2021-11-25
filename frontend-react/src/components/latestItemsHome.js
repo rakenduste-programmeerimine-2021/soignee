@@ -15,12 +15,22 @@ import { CardActionArea } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
 
+const styles = {
+    card: {
+      maxWidth: 345,
+    },
+    media: {
+      height: 0,
+      paddingTop: '56.25%', // 16:9
+    },
+  };
+
 function LatestItemsHome() {
     const [isLoading, setIsLoading] = useState(true);
     const [loadedItems, setLoadedItems] = useState([]);
 
     useEffect(() => {
-    fetch('http://localhost:8081/api/items').then(res => { 
+    fetch('http://localhost:8081/api/items/latest').then(res => { 
     return res.json(); 
     }).then(data => {
     console.log(data);
@@ -42,13 +52,14 @@ function LatestItemsHome() {
                 >
                 <CardActionArea component={Link} to={{ pathname: '/item/' + _id }} >
                     <CardMedia
-                    style = {{ height: 0, paddingTop: '56%'}}
+                    // style = {{ height: 400, paddingTop: '0%'}}
                     component="img"
                     sx={{
                         // 16:9
                         pt: '0%',
                     }}
-                    image={require('../uploaded/img_1.jpg')}
+                    height="400"
+                    image={"/uploaded/" + photo}
                     alt="image"
                     />
                     <CardContent sx={{ flexGrow: 1 }}>

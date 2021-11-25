@@ -6,6 +6,12 @@ exports.getItems = async (req, res) => {
   res.status(200).send(items)
 }
 
+exports.getItemsLatest = async (req, res) => {
+  const items = await Item.find({}).sort({"createdAt": -1}).limit(9);
+  
+  res.status(200).send(items)
+}
+
 exports.createItem = async (req, res) => {
 
   const newItem = {
