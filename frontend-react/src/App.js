@@ -11,7 +11,7 @@ import Signup from './pages/Signup';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AddListing from './pages/AddListing';
-import Subscriptions from "./pages/Subscriptions";
+import Feed from "./pages/Feed";
 
 function App() {
 
@@ -27,7 +27,7 @@ function App() {
             <Route path="/login" element={<Signin auth={auth} setAuth={setAuth} />} />
             <Route path="/signup" element={<Signup/>} />
             <Route path="/add-listing" element={<AddListing/>} />
-            <Route path="/subscriptions" element={<Subscriptions/>} />
+            <Route path="/subscriptions" element={<Feed/>} />
             <Route path="/profile/:user_id" />
         </Routes>
         </div>

@@ -19,7 +19,7 @@ import { IconButton, Input } from '@mui/material';
 const theme = createTheme();
 
 
-function Subscriptions() {
+function Feed() {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -32,8 +32,7 @@ function Subscriptions() {
             overflow: 'hidden',
           }}
         >          
-          <Typography component="h1" variant="h5">My Subscriptions</Typography>
-          
+          <Typography component="h1" variant="h5">My Feed</Typography>
         </Box>
       </Container>
     </ThemeProvider>
@@ -41,4 +40,4 @@ function Subscriptions() {
 }
 
 
-export default Subscriptions;
+export default Feed;

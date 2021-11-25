@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Navigate } from 'react-router';
 
 import { styled, alpha } from '@mui/material/styles';
@@ -19,13 +19,14 @@ import SearchIcon from '@mui/icons-material/Search';
 import AuthService from "../Auth/AuthService";
 
 export default function MenuAppBar({auth, setAuth}) {  
-  
+  let navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
 
-  function handleLogout() {
+  async function HandleLogout() {
     AuthService.logout()
     setAuth();
-    return (<Navigate to="/login"/>)
+    navigate("/", { replace: true });
+    //return (<Navigate to="/"/>)
   }
 
   const handleMenu = (event) => {
@@ -125,7 +126,7 @@ export default function MenuAppBar({auth, setAuth}) {
                 <MenuItem onClick={handleClose} component={Link} to='/profile/{user_id}'>Profile</MenuItem>
                 <MenuItem onClick={handleClose} component={Link} to='/add-listing'>Add Listing</MenuItem>
                 <MenuItem onClick={handleClose} component={Link} to='/subscriptions'>Subscriptions</MenuItem>
-                <MenuItem onClick={() => { handleClose(); handleLogout();}}>Log Out</MenuItem>
+                <MenuItem onClick={() => { handleClose(); HandleLogout();}}>Log Out</MenuItem>
                 
               </Menu>
             </div>

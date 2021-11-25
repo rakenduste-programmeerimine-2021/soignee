@@ -15,18 +15,17 @@ import { CardActionArea } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
 
-
 import AuthService from "../Auth/AuthService";
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const theme = createTheme();
 
-
 function Home({setAuth}) {
+  
   useEffect(() => {
     if (localStorage.getItem("user")) {
-        setAuth(AuthService.getCurrentUser);
+        setAuth(localStorage.getItem("user"));
       }
   }, []);
   
@@ -98,7 +97,7 @@ function Home({setAuth}) {
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
                       <Typography gutterBottom variant="h5" component="h2">
-                        ADIDAS
+                        BRANDNAME
                       </Typography>
                       <Typography>
                         Windbreaker

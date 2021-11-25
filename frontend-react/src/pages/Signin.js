@@ -30,6 +30,7 @@ function Signin({auth, setAuth}) {
     const authData = await AuthService.login(email,password)
     setLoginok(true);
     setAuth(authData);
+    
   }
 
   if (loginok || auth) {
