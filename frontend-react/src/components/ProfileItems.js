@@ -19,18 +19,10 @@ import { Card, CardActionArea, CardActions, CardContent, CardMedia } from '@mui/
 
 import AuthService from "../Auth/AuthService";
 
-const theme = createTheme();
-
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 function ProfileItems() {
   return (
-    <ThemeProvider theme={theme}>
-      <Container sx={{ textAlign: "center" }} maxWidth="xs">
-        <Typography component="h1" variant="h5">
-          My Items
-        </Typography>
-      </Container>
       <Container sx={{ py: 2 }} maxWidth="md">
         <Grid container spacing={4}>
           {cards.map((card) => (
@@ -68,7 +60,6 @@ function ProfileItems() {
           ))}
         </Grid>
       </Container>
-    </ThemeProvider>
   );
 }
 

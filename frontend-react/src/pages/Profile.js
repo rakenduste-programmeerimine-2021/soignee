@@ -22,12 +22,24 @@ import ProfileItems from '../components/ProfileItems';
 
 const theme = createTheme();
 
-function Profile() {
+function Profile({ setAuth, auth }) {
+  
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+        setAuth(localStorage.getItem("user"));
+      }
+  }, []);
+  
   return (
-      <>
-        <ProfileInfo />
-        <ProfileItems />
-      </>
+    <ThemeProvider theme={theme}>
+      <Container sx={{ pt: 2, textAlign: "center" }} maxWidth="xs">
+        <Typography component="h1" variant="h5">
+          Profile
+        </Typography>
+      </Container>
+      <ProfileInfo setAuth={setAuth}/>
+      <ProfileItems />
+    </ThemeProvider>
     );
 }
 

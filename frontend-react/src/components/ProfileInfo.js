@@ -19,16 +19,25 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import AuthService from "../Auth/AuthService";
 
-const theme = createTheme();
-
 function ProfileInfo() {
+  
+  
+
+
+
+  async function getUser() {
+    //AuthService.getCurrentUser({user});
+    
+    // const userTemplate = {
+    //   id: user.id,
+    //   firstName: user.firstName,
+    //   lastName: user.lastName,
+    //   email: user.email,
+    //   role: user.role
+    // }
+  }
+
   return (
-    <ThemeProvider theme={theme}>
-      <Container sx={{ pt: 2, textAlign: "center" }} maxWidth="xs">
-        <Typography component="h1" variant="h5">
-          Profile
-        </Typography>
-      </Container>
       <Container
         sx={{
           py: 2,
@@ -73,7 +82,7 @@ function ProfileInfo() {
                 First Name: 
             </Typography>
             <Typography sx={{ minHeight: "60px", textAlign: "left"}} component="h1" variant="h5">
-                Last Name: 
+                Last Name:
             </Typography>
             <Typography sx={{ minHeight: "60px", textAlign: "left"}} component="h1" variant="h5">
                 Email: 
@@ -81,7 +90,6 @@ function ProfileInfo() {
 
         </Box>
       </Container>
-    </ThemeProvider>
   );
 }
 

@@ -29,7 +29,7 @@ function App() {
             <Route path="/signup" element={<Signup/>} />
             <Route path="/add-listing" element={<AddListing/>} />
             <Route path="/feed" element={<Feed/>} />
-            <Route path="/profile/:user_id" element={<Profile/>} />
+            <Route path="/profile/:user_id" element={<Profile setAuth={setAuth} auth={auth}/>} />
         </Routes>
         </div>
       <Footer/>
