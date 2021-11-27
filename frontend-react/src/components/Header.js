@@ -18,13 +18,13 @@ import SearchIcon from '@mui/icons-material/Search';
 
 import AuthService from "../Auth/AuthService";
 
-export default function MenuAppBar({auth, setAuth}) {  
+export default function MenuAppBar({loginok, setLoginok}) {  
   let navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
 
   async function HandleLogout() {
     AuthService.logout()
-    setAuth();
+    setLoginok(false);
     navigate("/", { replace: true });
     //return (<Navigate to="/"/>)
   }
@@ -86,7 +86,6 @@ export default function MenuAppBar({auth, setAuth}) {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to="/">LOGO</Link>
             </Typography>
-          
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -96,7 +95,7 @@ export default function MenuAppBar({auth, setAuth}) {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
-          {auth && (
+          {loginok && (
             <div>
               <IconButton
                 size="large"
@@ -131,7 +130,7 @@ export default function MenuAppBar({auth, setAuth}) {
               </Menu>
             </div>
           )}
-          {!auth && (
+          {!loginok && (
               <div>
               <IconButton
                 size="large"

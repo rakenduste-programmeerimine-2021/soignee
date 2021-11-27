@@ -24,7 +24,7 @@ const styles = {
       paddingTop: '56.25%', // 16:9
     },
   };
-
+ 
 function LatestItemsHome() {
     const [isLoading, setIsLoading] = useState(true);
     const [loadedItems, setLoadedItems] = useState([]);

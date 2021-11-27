@@ -11,11 +11,11 @@ import LatestItemsHome from '../components/LatestItemsHome';
 
 const theme = createTheme();
 
-function Home({setAuth}) {
+function Home({setLoginok}) {
   
   useEffect(() => {
-    if (localStorage.getItem("user")) {
-        setAuth(localStorage.getItem("user"));
+    if (localStorage.getItem("token")) {
+        setLoginok(true);
       }
   }, []);
   

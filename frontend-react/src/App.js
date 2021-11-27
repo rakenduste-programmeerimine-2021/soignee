@@ -14,22 +14,24 @@ import AddListing from './pages/AddListing';
 import Feed from "./pages/Feed";
 import Profile from "./pages/Profile";
 
+
 function App() {
 
+  const [loginok, setLoginok] = useState(false);
   const [auth, setAuth] = useState();
   const [mainPageView, setMainPageView] = useState(false);
 
   return (
     <Router>
-      <Header auth={auth} setAuth={setAuth} mainPageView={mainPageView}/>
+      <Header loginok={loginok} setLoginok={setLoginok} mainPageView={mainPageView}/>
         <div className="main">
         <Routes>
-            <Route exact path="/" element={<Home setAuth={setAuth}/>} />
-            <Route path="/login" element={<Signin auth={auth} setAuth={setAuth} />} />
+            <Route exact path="/" element={<Home setLoginok={setLoginok}/>} />
+            <Route path="/login" element={<Signin loginok={loginok} setLoginok={setLoginok} />} />
             <Route path="/signup" element={<Signup/>} />
-            <Route path="/add-listing" element={<AddListing/>} />
-            <Route path="/feed" element={<Feed/>} />
-            <Route path="/profile/:user_id" element={<Profile setAuth={setAuth} auth={auth}/>} />
+            <Route path="/add-listing" element={<AddListing loginok={loginok} setLoginok={setLoginok}/>} />
+            <Route path="/feed" element={<Feed loginok={loginok} setLoginok={setLoginok}/>} />
+            <Route path="/profile/:user_id" element={<Profile loginok={loginok} setLoginok={setLoginok}/>} />
         </Routes>
         </div>
       <Footer/>

@@ -20,20 +20,23 @@ import AuthService from "../Auth/AuthService";
 
 const theme = createTheme();
 
-function Signin({auth, setAuth}) {
+function Signin({loginok, setLoginok}) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [loginok, setLoginok] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const authData = await AuthService.login(email,password)
+    const auth = await AuthService.login(email,password)
     setLoginok(true);
-    setAuth(authData);
-    
   }
 
-  if (loginok || auth) {
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+        setLoginok(true);
+      }
+  }, []);
+
+  if (loginok) {
     return (
       <Navigate to="/" />
     )
