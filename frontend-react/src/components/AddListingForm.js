@@ -31,10 +31,8 @@ function AddListingForm(props) {
             "price": price,
             "user": userId
         }
-
-
-
-        // props.onAddItem(item);
+        
+        props.onAddItem(item);
     }
 
     return(
@@ -48,6 +46,9 @@ function AddListingForm(props) {
           }}
         >        
           <Typography component="h1" variant="h5">Add New Listing</Typography>
+          <Box sx={{ mt: 3 }}>
+            {props.resultNotif}
+          </Box>
           <Box component="form" onSubmit={formSubmitHandler} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"

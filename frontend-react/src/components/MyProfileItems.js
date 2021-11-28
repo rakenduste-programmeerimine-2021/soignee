@@ -19,8 +19,6 @@ import { Card, CardActionArea, CardActions, CardContent, CardMedia } from '@mui/
 
 import AuthService from "../Auth/AuthService";
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 function ProfileItems({loadedItems}) {
   
   return (        
@@ -65,7 +63,9 @@ function ProfileItems({loadedItems}) {
           </Grid>
           )) :
           <Container sx={{ py: 2 }} maxWidth="md">
-            <div>You currently have no items added</div>
+            <Box sx={{ mt: 3 }}>
+              You currently have no added listings!
+            </Box>
           </Container>
         }
       </Grid>

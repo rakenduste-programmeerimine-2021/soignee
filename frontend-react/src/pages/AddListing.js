@@ -5,12 +5,15 @@ import { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { Navigate } from 'react-router';
+import Box from '@mui/material/Box';
 
 import AddListingForm from '../components/AddListingForm';
 
 const theme = createTheme();
 
 function AddListing({loginok}) {
+  
+  const [resultNotif, setResultNotif] = useState([]);
 
   if (!loginok) {
     return (
@@ -18,44 +21,24 @@ function AddListing({loginok}) {
       // navigate("/login", { replace: true })
     )
   }
-  
-// function itemSubmitHandler(){
-    
-//     const brandName = "brandName"
-//     const model = "model"
-//     const quality = 10
-//     const description = "description"
-//     const photo = "photos"
-//     const price = "price"
-//     const user = "admin"
-    
-//     return axios.post('http://localhost:8081/api/items/create', {
-//       brandName,
-//       model,
-//       quality,
-//       description,
-//       photo,
-//       price,
-//       user
-//     })
-//     .then(response => {
-//       return response.data;
-//     });
-//   }
 
-function itemSubmitHandler(item) {
-  //console.log(item);
-  fetch('http://localhost:8081/api/items/create', {
-      method: 'POST',
-      body: JSON.stringify(item),
-      headers: {'Content-Type':'application/json'}
-  });
-}
+  function itemSubmitHandler(item) {
+    fetch('http://localhost:8081/api/items/create', {
+        method: 'POST',
+        body: JSON.stringify(item),
+        headers: {'Content-Type':'application/json'}
+    }).then(res => { 
+      if(res.status===200){
+        setResultNotif('Successfully added a new listing!');
+      }
+      return res.json(); 
+      });
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-        <AddListingForm onAddItem={itemSubmitHandler}/>
+        <AddListingForm onAddItem={itemSubmitHandler} resultNotif={resultNotif} setResultNotif={setResultNotif}/>
       </Container>
     </ThemeProvider>
   );
