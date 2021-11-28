@@ -12,12 +12,12 @@ class AuthService {
     .then(response => {
       if (response.status === 200) {
         if (response.data.token) {
-          localStorage.setItem("id", JSON.stringify(response.data.id).slice(1,-1));
-          localStorage.setItem("firstName", JSON.stringify(response.data.firstName).slice(1,-1));
-          localStorage.setItem("lastName", JSON.stringify(response.data.lastName).slice(1,-1));
-          localStorage.setItem("email", JSON.stringify(response.data.email).slice(1,-1));
-          localStorage.setItem("role", JSON.stringify(response.data.role).slice(1,-1));
-          localStorage.setItem("token", JSON.stringify(response.data.token).slice(1,-1));
+          localStorage.setItem("id", response.data.id);
+          localStorage.setItem("firstName", response.data.firstName);
+          localStorage.setItem("lastName", response.data.lastName);
+          localStorage.setItem("email", response.data.email);
+          localStorage.setItem("role", response.data.role);
+          localStorage.setItem("token", response.data.token);
         }
       } else {
         return response.status;
