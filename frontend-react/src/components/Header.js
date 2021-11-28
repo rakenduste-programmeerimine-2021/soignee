@@ -79,6 +79,16 @@ export default function MenuAppBar({loginok, setLoginok}) {
     },
   }));
 
+  console.log(window.location.pathname)
+  const [hideSearch, setHideSearch] = useState(true);
+  useEffect(() => {
+    if((window.location.pathname === '/') || (window.location.pathname === '/search')){
+      setHideSearch(true)
+    }else{
+      setHideSearch(false)
+    }
+  })
+
   return (
     <Box sx={{ }}>
       <AppBar position="static">
@@ -87,7 +97,9 @@ export default function MenuAppBar({loginok, setLoginok}) {
             <Link to="/">
               <img id="logo" src="./Soignee.svg" alt="logo" />
             </Link>
-            </Typography>
+          </Typography>
+
+          {!hideSearch && (
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -97,6 +109,18 @@ export default function MenuAppBar({loginok, setLoginok}) {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
+          )}
+          {hideSearch && (
+          <Search sx={{display: 'none'}}>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search>
+          )}
           {loginok && (
             <div>
               <IconButton
