@@ -18,7 +18,7 @@ import { borders } from '@mui/system';
 
 import AuthService from "../Auth/AuthService";
 import ProfileInfo from '../components/ProfileInfo';
-import ProfileItems from '../components/ProfileItems';
+import MyProfileItems from '../components/MyProfileItems';
 
 const theme = createTheme();
 
@@ -31,6 +31,18 @@ function Profile({loginok}) {
     "lastName": localStorage.getItem("lastName"),
     "email": localStorage.getItem("email")
   }
+  const [userId, setUserId] = useState(localStorage.getItem("id"));
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadedItems, setLoadedItems] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:8081/api/items/myitems/${userId}`).then(res => { 
+    return res.json(); 
+    }).then(data => {
+    setIsLoading(false);
+    setLoadedItems(data);
+    });
+  },[])
 
   if (!loginok) {
     return (
@@ -38,15 +50,18 @@ function Profile({loginok}) {
     ) 
   }
   
+  if (isLoading) {
+      return (<div>Laeb...</div>);
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Container sx={{ pt: 2, textAlign: "center" }} maxWidth="xs">
-        <Typography component="h1" variant="h5">
-          Profile
-        </Typography>
       </Container>
       <ProfileInfo info={info}/>
-      <ProfileItems />
+      <Container sx={{ py: 2 }} maxWidth="md">
+        <MyProfileItems loadedItems={loadedItems} userId={userId}/>
+      </Container>
     </ThemeProvider>
     );
 }
