@@ -79,7 +79,6 @@ export default function MenuAppBar({loginok, setLoginok}) {
     },
   }));
 
-  console.log(window.location.pathname)
   const [hideSearch, setHideSearch] = useState(true);
   useEffect(() => {
     if((window.location.pathname === '/') || (window.location.pathname === '/search')){
