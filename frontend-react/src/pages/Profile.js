@@ -32,7 +32,6 @@ function Profile({loginok}) {
     "email": localStorage.getItem("email")
   }
 
-
   if (!loginok) {
     return (
       <Navigate to="/login" />
