@@ -25,26 +25,32 @@ const theme = createTheme();
 
 
 function Profile({ loginok, setLoginok }) {
-  
-  const [info, setInfo] = useState();
 
+  const [auth, setAuth] = useState();
+
+  const info =  {
+    "firstName": localStorage.getItem("firstName"),
+    "lastName": localStorage.getItem("lastName"),
+    "email": localStorage.getItem("email")
+  }
+  
 
   useEffect(() => {
     if(localStorage.getItem("token")){
-      console.log(localStorage.getItem("lastName"))
-      console.log(localStorage.getItem("firstName"))
-      setLoginok(true);
-      console.log(loginok);
-      setInfo(localStorage.getItem("firstName"));
+      //console.log(localStorage.getItem("lastName"))
+      //console.log(localStorage.getItem("firstName"))
+      //setLoginok(true);
+      //console.log(loginok);
+      //setInfo(localStorage.getItem("firstName"));
       console.log(info);
     }
   }, []);
 
-  if (!loginok) {
+  /*if (!loginok) {
     return (
       <Navigate to="/login" />
     ) 
-  }
+  }*/
 
   if (!info){
     return (<>Laeb...</>)
@@ -57,7 +63,7 @@ function Profile({ loginok, setLoginok }) {
           Profile
         </Typography>
       </Container>
-      <ProfileInfo/>
+      <ProfileInfo info={info}/>
       <ProfileItems />
     </ThemeProvider>
     );

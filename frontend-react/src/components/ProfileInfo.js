@@ -19,7 +19,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import AuthService from "../Auth/AuthService";
 
-function ProfileInfo() {
+function ProfileInfo({info}) {
 
   
   return (
@@ -64,13 +64,13 @@ function ProfileInfo() {
             }}
         >
             <Typography sx={{ minHeight: "60px", textAlign: "left"}} component="h1" variant="h5">
-                First Name: 
+                First Name: {info["firstName"]}
             </Typography>
             <Typography sx={{ minHeight: "60px", textAlign: "left"}} component="h1" variant="h5">
-                Last Name:
+                Last Name: {info["lastName"]}
             </Typography>
             <Typography sx={{ minHeight: "60px", textAlign: "left"}} component="h1" variant="h5">
-                Email: 
+                Email: {info["email"]}
             </Typography>
 
         </Box>
