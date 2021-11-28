@@ -31,6 +31,8 @@ function Profile({ loginok, setLoginok }) {
 
   useEffect(() => {
     if(localStorage.getItem("token")){
+      AuthService.getCurrentUser();
+      console.log(localStorage.getItem("lastName"))
       setLoginok(true);
       console.log(loginok);
       setInfo(localStorage.getItem("firstName"));
@@ -41,7 +43,7 @@ function Profile({ loginok, setLoginok }) {
   if (!loginok) {
     return (
       <Navigate to="/login" />
-    )
+    ) 
   }
 
   if (!info){
