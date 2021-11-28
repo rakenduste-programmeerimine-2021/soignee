@@ -26,7 +26,10 @@ const theme = createTheme();
 
 function Profile({ loginok, setLoginok }) {
 
-  const [auth, setAuth] = useState();
+  const auth = localStorage.getItem("token") || null;
+
+  const [token, setToken] = useState(auth);
+
 
   const info =  {
     "firstName": localStorage.getItem("firstName"),
@@ -34,26 +37,12 @@ function Profile({ loginok, setLoginok }) {
     "email": localStorage.getItem("email")
   }
   
+  console.log(token);
 
-  useEffect(() => {
-    if(localStorage.getItem("token")){
-      //console.log(localStorage.getItem("lastName"))
-      //console.log(localStorage.getItem("firstName"))
-      //setLoginok(true);
-      //console.log(loginok);
-      //setInfo(localStorage.getItem("firstName"));
-      console.log(info);
-    }
-  }, []);
-
-  /*if (!loginok) {
+  if (!token) {
     return (
       <Navigate to="/login" />
     ) 
-  }*/
-
-  if (!info){
-    return (<>Laeb...</>)
   }
   
   return (
