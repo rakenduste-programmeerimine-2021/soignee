@@ -17,7 +17,7 @@ function AddListingForm(props) {
     const [description, setDescription] = useState();
     const [price, setPrice] = useState();
     const [photos, setPhotos] = useState();
-    const [userId, setUser] = useState(localStorage.id.slice(1,-1));    
+    const [userId, setUser] = useState(localStorage.id);    
 
     function formSubmitHandler(e){
         e.preventDefault();

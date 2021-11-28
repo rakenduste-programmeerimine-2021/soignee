@@ -26,7 +26,7 @@ function App() {
       <Header loginok={loginok} setLoginok={setLoginok} mainPageView={mainPageView}/>
         <div className="main">
         <Routes>
-            <Route exact path="/" element={<Home setLoginok={setLoginok}/>} />
+            <Route exact path="/" element={<Home setLoginok={setLoginok}/>}/>
             <Route path="/login" element={<Signin loginok={loginok} setLoginok={setLoginok} />} />
             <Route path="/signup" element={<Signup/>} />
             <Route path="/add-listing" element={<AddListing loginok={loginok} setLoginok={setLoginok}/>} />

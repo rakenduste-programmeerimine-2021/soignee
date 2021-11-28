@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -12,7 +12,8 @@ import LatestItemsHome from '../components/LatestItemsHome';
 const theme = createTheme();
 
 function Home({setLoginok}) {
-  
+
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
         setLoginok(true);
