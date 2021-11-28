@@ -11,15 +11,7 @@ import LatestItemsHome from '../components/LatestItemsHome';
 
 const theme = createTheme();
 
-function Home({setLoginok}) {
-
-
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-        setLoginok(true);
-      }
-  }, []);
-  
+function Home() {
   
   return (
     <ThemeProvider theme={theme}>

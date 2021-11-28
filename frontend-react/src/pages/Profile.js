@@ -24,22 +24,16 @@ const theme = createTheme();
 
 
 
-function Profile({ loginok, setLoginok }) {
-
-  const auth = localStorage.getItem("token") || null;
-
-  const [token, setToken] = useState(auth);
-
-
+function Profile({loginok}) {
+  
   const info =  {
     "firstName": localStorage.getItem("firstName"),
     "lastName": localStorage.getItem("lastName"),
     "email": localStorage.getItem("email")
   }
-  
-  console.log(token);
 
-  if (!token) {
+
+  if (!loginok) {
     return (
       <Navigate to="/login" />
     ) 

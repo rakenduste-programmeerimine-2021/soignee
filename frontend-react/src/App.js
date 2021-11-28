@@ -17,23 +17,21 @@ import Profile from "./pages/Profile";
 
 function App() {
 
-  const auth = localStorage.getItem("token") ? true : false;
+  let auth = localStorage.getItem("token") ? true : false;
   const [loginok, setLoginok] = useState(auth);
-  //const [auth, setAuth] = useState();
-  const [mainPageView, setMainPageView] = useState(false);
 
   return (
     <Router>
-      <Header loginok={loginok} setLoginok={setLoginok} mainPageView={mainPageView}/>
+      <Header loginok={loginok} setLoginok={setLoginok}/>
         <div className="main">
         <Routes>
-            <Route exact path="/" element={<Home setLoginok={setLoginok}/>}/>
+            <Route exact path="/" element={<Home/>}/>
             <Route path="/login" element={<Signin loginok={loginok} setLoginok={setLoginok} />} />
             <Route path="/signup" element={<Signup/>} />
-            <Route path="/add-listing" element={<AddListing loginok={loginok} setLoginok={setLoginok}/>} />
-            <Route path="/feed" element={<Feed loginok={loginok} setLoginok={setLoginok}/>} />
+            <Route path="/add-listing" element={<AddListing loginok={loginok}/>} />
+            <Route path="/feed" element={<Feed loginok={loginok}/>} />
             {/* <Route path="/profile/:user_id" element={<Profile loginok={loginok} setLoginok={setLoginok}/>} /> */}
-            <Route path="/profile" element={<Profile loginok={loginok} setLoginok={setLoginok}/>} />
+            <Route path="/profile" element={<Profile loginok={loginok}/>} />
         </Routes>
         </div>
       <Footer/>

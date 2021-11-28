@@ -21,6 +21,7 @@ import AuthService from "../Auth/AuthService";
 const theme = createTheme();
 
 function Signin({loginok, setLoginok}) {
+  
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -29,12 +30,6 @@ function Signin({loginok, setLoginok}) {
     const auth = await AuthService.login(email,password)
     setLoginok(true);
   }
-
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-        setLoginok(true);
-      }
-  }, []);
 
   if (loginok) {
     return (

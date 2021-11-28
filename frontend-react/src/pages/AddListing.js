@@ -10,12 +10,7 @@ import AddListingForm from '../components/AddListingForm';
 
 const theme = createTheme();
 
-function AddListing({loginok, setLoginok}) {
-  // useEffect(() => {
-  //   if (localStorage.getItem("token")) {
-  //       setLoginok(true);
-  //     }
-  // }, []);
+function AddListing({loginok}) {
 
   if (!loginok) {
     return (
