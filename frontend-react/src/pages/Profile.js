@@ -31,7 +31,6 @@ function Profile({ loginok, setLoginok }) {
 
   useEffect(() => {
     if(localStorage.getItem("token")){
-      AuthService.getCurrentUser();
       console.log(localStorage.getItem("lastName"))
       console.log(localStorage.getItem("firstName"))
       setLoginok(true);
