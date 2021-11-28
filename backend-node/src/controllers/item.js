@@ -12,6 +12,14 @@ exports.getItemsLatest = async (req, res) => {
   res.status(200).send(items)
 }
 
+exports.getItemsMyItems = async (req, res) => {
+  const { id } = req.params;
+  
+  const items = await Item.find({"user":`${ id }`})
+  
+  res.status(200).send(items)
+}
+
 exports.createItem = async (req, res) => {
 
   const newItem = {
