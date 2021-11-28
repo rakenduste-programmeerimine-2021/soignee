@@ -17,7 +17,8 @@ import Profile from "./pages/Profile";
 
 function App() {
 
-  const [loginok, setLoginok] = useState(false);
+  const auth = localStorage.getItem("token") ? true : false;
+  const [loginok, setLoginok] = useState(auth);
   //const [auth, setAuth] = useState();
   const [mainPageView, setMainPageView] = useState(false);
 
