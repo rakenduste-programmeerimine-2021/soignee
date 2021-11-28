@@ -32,12 +32,10 @@ function Profile({ loginok, setLoginok }) {
   useEffect(() => {
     if(localStorage.getItem("token")){
       setLoginok(true);
-      return {loginok};
+      console.log(loginok);
+      setInfo(localStorage.getItem("firstName"));
+      console.log(info);
     }
-    //.then((data) => {
-      //console.log(data);
-      //setInfo(data);
-    //})
   }, []);
 
   if (!loginok) {
