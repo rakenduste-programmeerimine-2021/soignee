@@ -11,12 +11,13 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
+import { Navigate } from 'react-router';
 
 import AuthService from "../Auth/AuthService";
 
 const theme = createTheme();
 
-export default function SignUp() {
+export default function SignUp({loginok}) {
 
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
@@ -34,6 +35,11 @@ export default function SignUp() {
     }
   }
 
+  if (loginok) {
+    return (
+      <Navigate to="/" />
+    )
+  }
 
   return (
     <ThemeProvider theme={theme}>

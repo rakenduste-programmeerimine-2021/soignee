@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import AddListing from './pages/AddListing';
 import Feed from "./pages/Feed";
 import Profile from "./pages/Profile";
+import SearchPage from "./pages/SearchPage";
 
 
 function App() {
@@ -27,11 +28,12 @@ function App() {
         <Routes>
             <Route exact path="/" element={<Home/>}/>
             <Route path="/login" element={<Signin loginok={loginok} setLoginok={setLoginok} />} />
-            <Route path="/signup" element={<Signup/>} />
+            <Route path="/signup" element={<Signup loginok={loginok} />} />
             <Route path="/add-listing" element={<AddListing loginok={loginok}/>} />
             <Route path="/feed" element={<Feed loginok={loginok}/>} />
             {/* <Route path="/profile/:user_id" element={<Profile loginok={loginok} setLoginok={setLoginok}/>} /> */}
             <Route path="/profile" element={<Profile loginok={loginok}/>} />
+            <Route path="/search" element={<SearchPage/>} />
         </Routes>
         </div>
       <Footer/>
