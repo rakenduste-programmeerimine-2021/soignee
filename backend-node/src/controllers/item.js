@@ -20,6 +20,14 @@ exports.getItemsMyItems = async (req, res) => {
   res.status(200).send(items)
 }
 
+exports.getItemsFromSearch = async (req, res) => {
+  const { filter } = req.params;
+  
+  const items = await Item.find({"brandName" : {$regex : `${filter}`}});
+  
+  res.status(200).send(items)
+}
+
 exports.createItem = async (req, res) => {
 
   const newItem = {
