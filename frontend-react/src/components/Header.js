@@ -17,6 +17,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 
 import AuthService from "../Auth/AuthService";
+import { height } from '@mui/system';
 
 export default function MenuAppBar({loginok, setLoginok}) {  
   let navigate = useNavigate();
@@ -92,16 +93,16 @@ export default function MenuAppBar({loginok, setLoginok}) {
     <Box sx={{ }}>
       <AppBar position="static">
         <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1, display: {xs: 'none', sm: 'flex', md: 'flex'} }}>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to="/">
-              <img id="logo" src="./Soignee.svg" alt="logo" />
+              <img id="logo" src="./Soignee.svg" alt="logo"  height= "80px" />
             </Link>
           </Typography>
 
           {!hideSearch && (
           <Search>
             <SearchIconWrapper>
-              <SearchIcon />
+              <SearchIcon />  
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
