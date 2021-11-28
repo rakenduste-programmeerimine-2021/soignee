@@ -33,6 +33,7 @@ function Profile({ loginok, setLoginok }) {
     if(localStorage.getItem("token")){
       AuthService.getCurrentUser();
       console.log(localStorage.getItem("lastName"))
+      console.log(localStorage.getItem("firstName"))
       setLoginok(true);
       console.log(loginok);
       setInfo(localStorage.getItem("firstName"));
