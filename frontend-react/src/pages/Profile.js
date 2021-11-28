@@ -22,13 +22,33 @@ import ProfileItems from '../components/ProfileItems';
 
 const theme = createTheme();
 
-function Profile({ setAuth, auth }) {
+
+
+function Profile({ loginok, setLoginok }) {
   
+  const [info, setInfo] = useState();
+
+
   useEffect(() => {
-    if (localStorage.getItem("user")) {
-        setAuth(localStorage.getItem("user"));
-      }
+    if(localStorage.getItem("token")){
+      setLoginok(true);
+      return {loginok};
+    }
+    //.then((data) => {
+      //console.log(data);
+      //setInfo(data);
+    //})
   }, []);
+
+  if (!loginok) {
+    return (
+      <Navigate to="/login" />
+    )
+  }
+
+  if (!info){
+    return (<>Laeb...</>)
+  }
   
   return (
     <ThemeProvider theme={theme}>
@@ -37,7 +57,7 @@ function Profile({ setAuth, auth }) {
           Profile
         </Typography>
       </Container>
-      <ProfileInfo setAuth={setAuth}/>
+      <ProfileInfo/>
       <ProfileItems />
     </ThemeProvider>
     );

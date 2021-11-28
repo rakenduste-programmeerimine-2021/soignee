@@ -20,23 +20,8 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AuthService from "../Auth/AuthService";
 
 function ProfileInfo() {
+
   
-  
-
-
-
-  async function getUser() {
-    //AuthService.getCurrentUser({user});
-    
-    // const userTemplate = {
-    //   id: user.id,
-    //   firstName: user.firstName,
-    //   lastName: user.lastName,
-    //   email: user.email,
-    //   role: user.role
-    // }
-  }
-
   return (
       <Container
         sx={{

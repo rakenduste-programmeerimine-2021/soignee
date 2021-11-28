@@ -18,7 +18,7 @@ import Profile from "./pages/Profile";
 function App() {
 
   const [loginok, setLoginok] = useState(false);
-  const [auth, setAuth] = useState();
+  //const [auth, setAuth] = useState();
   const [mainPageView, setMainPageView] = useState(false);
 
   return (
@@ -31,7 +31,8 @@ function App() {
             <Route path="/signup" element={<Signup/>} />
             <Route path="/add-listing" element={<AddListing loginok={loginok} setLoginok={setLoginok}/>} />
             <Route path="/feed" element={<Feed loginok={loginok} setLoginok={setLoginok}/>} />
-            <Route path="/profile/:user_id" element={<Profile loginok={loginok} setLoginok={setLoginok}/>} />
+            {/* <Route path="/profile/:user_id" element={<Profile loginok={loginok} setLoginok={setLoginok}/>} /> */}
+            <Route path="/profile" element={<Profile loginok={loginok} setLoginok={setLoginok}/>} />
         </Routes>
         </div>
       <Footer/>
