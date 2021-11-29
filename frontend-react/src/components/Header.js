@@ -95,7 +95,7 @@ export default function MenuAppBar({loginok, setLoginok}) {
         <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to="/">
-              <img id="logo" src="./Soignee.svg" alt="logo"  height= "80px" />
+              <img id="logo" src="./Soignee.svg" alt="logo"  width= "100px" />
             </Link>
           </Typography>
 
