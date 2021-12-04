@@ -17,6 +17,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 
 import AuthService from "../Auth/AuthService";
+import { height } from '@mui/system';
 
 export default function MenuAppBar({loginok, setLoginok}) {  
   let navigate = useNavigate();
@@ -79,16 +80,38 @@ export default function MenuAppBar({loginok, setLoginok}) {
     },
   }));
 
+  const [hideSearch, setHideSearch] = useState(true);
+  useEffect(() => {
+    if((window.location.pathname === '/') || (window.location.pathname === '/search')){
+      setHideSearch(true)
+    }else{
+      setHideSearch(false)
+    }
+  })
+
   return (
     <Box sx={{ }}>
       <AppBar position="static">
         <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1, display: {xs: 'none', sm: 'flex', md: 'flex'} }}>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to="/">
-              <img id="logo" src="./Soignee.svg" alt="logo" />
+              <img id="logo" src="./Soignee.svg" alt="logo"  width= "100px" />
             </Link>
-            </Typography>
+          </Typography>
+
+          {!hideSearch && (
           <Search>
+            <SearchIconWrapper>
+              <SearchIcon />  
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search>
+          )}
+          {hideSearch && (
+          <Search sx={{display: 'none'}}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -97,6 +120,7 @@ export default function MenuAppBar({loginok, setLoginok}) {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
+          )}
           {loginok && (
             <div>
               <IconButton
@@ -124,7 +148,7 @@ export default function MenuAppBar({loginok, setLoginok}) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose} component={Link} to='/profile'>Profile</MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to='/profile/:user_id'>Profile</MenuItem>
                 <MenuItem onClick={handleClose} component={Link} to='/add-listing'>Add Listing</MenuItem>
                 <MenuItem onClick={handleClose} component={Link} to='/subscriptions'>Subscriptions</MenuItem>
                 <MenuItem onClick={() => { handleClose(); HandleLogout();}}>Log Out</MenuItem>

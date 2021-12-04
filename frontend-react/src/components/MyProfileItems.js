@@ -63,7 +63,7 @@ function ProfileItems({loadedItems}) {
           </Grid>
           )) :
           <Container sx={{ py: 2 }} maxWidth="md">
-            <Box sx={{ mt: 3 }}>
+            <Box sx={{ mt: 3, textAlign: 'center' }}>
               You currently have no added listings!
             </Box>
           </Container>

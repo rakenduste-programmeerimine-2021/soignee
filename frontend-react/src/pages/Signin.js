@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState, useEffect} from 'react';
 import { Navigate } from 'react-router';
 import { borders } from '@mui/system';
+//import {TextValidator } from 'react-material-ui-form-validator'
 
 import AuthService from "../Auth/AuthService";
 
@@ -22,7 +23,7 @@ const theme = createTheme();
 
 function Signin({loginok, setLoginok}) {
   
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState();
 
   async function handleSubmit(e) {
@@ -37,7 +38,16 @@ function Signin({loginok, setLoginok}) {
     )
   }
 
+  //const [emailValidator, setEmailValidator] = useState('');
+
+// handleChange = (event) => {
+//     const email = event.target.value;
+//     setEmailValidator({ email });
+// }
+//const { email } = emailValidator;
+
   return (
+    
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <Box
@@ -57,8 +67,11 @@ function Signin({loginok, setLoginok}) {
 
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
+              // value={email}
+              // validators={['required', 'isEmail']}
+              // errorMessages={['this field is required', 'email is not valid']}
+
               margin="normal"
-              required
               fullWidth
               id="email"
               label="Email Address"
