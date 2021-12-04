@@ -54,4 +54,7 @@ router.post(
   authController.signup
 );
 
+router.get("/profile/:id", authController.getUser)
+router.get("/profiles", authController.getUsers)
+
 module.exports = router;

@@ -25,23 +25,34 @@ const theme = createTheme();
 
 
 function Profile({loginok}) {
+
+  const [info, setInfo] = useState({
+    "firstName": "",
+    "lastName": "",
+    "email": ""
+  })
   
-  const info =  {
-    "firstName": localStorage.getItem("firstName"),
-    "lastName": localStorage.getItem("lastName"),
-    "email": localStorage.getItem("email")
-  }
   const [userId, setUserId] = useState(localStorage.getItem("id"));
   const [isLoading, setIsLoading] = useState(true);
   const [loadedItems, setLoadedItems] = useState([]);
 
-  useEffect(() => {
-    fetch(`http://localhost:8081/api/items/myitems/${userId}`).then(res => { 
-    return res.json(); 
+  useEffect(async () => {
+    const myItems = await fetch(`http://localhost:8081/api/items/myitems/${userId}`).then(res => { 
+        return res.json(); 
+      }).then(data => {
+        setLoadedItems(data);
+      });
+
+    const userProfile = await fetch(`http://localhost:8081/api/auth/profile/${userId}`).then(res => {
+      return res.json();
     }).then(data => {
-    setIsLoading(false);
-    setLoadedItems(data);
+      setInfo({
+        "firstName": data.user.firstName,
+        "lastName": data.user.lastName,
+        "email": data.user.email
+      })
     });
+    setIsLoading(false);
   },[])
 
   if (!loginok) {

@@ -64,3 +64,20 @@ exports.signup = async (req, res) => {
     res.status(400).json({ error: e.message })
   }
 }
+
+exports.getUser = async (req, res) => {
+  const {id} = req.params;
+
+  const user = await User.findOne({_id: id})
+
+  if (!user) res.status(404).send("No user with that id found")
+
+  res.status(200).send({user})
+
+}
+
+exports.getUsers = async (req, res) => {
+  const users = await User.find({})
+  
+  res.status(200).send(users)
+}
