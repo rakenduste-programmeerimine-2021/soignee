@@ -148,7 +148,7 @@ export default function MenuAppBar({loginok, setLoginok}) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose} component={Link} to='/profile'>Profile</MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to='/profile/:user_id'>Profile</MenuItem>
                 <MenuItem onClick={handleClose} component={Link} to='/add-listing'>Add Listing</MenuItem>
                 <MenuItem onClick={handleClose} component={Link} to='/subscriptions'>Subscriptions</MenuItem>
                 <MenuItem onClick={() => { handleClose(); HandleLogout();}}>Log Out</MenuItem>

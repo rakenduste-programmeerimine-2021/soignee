@@ -21,6 +21,10 @@ import AuthService from "../Auth/AuthService";
 
 function ProfileInfo({info}) {
 
+  //const id = () => {}
+
+  const [isProfile, setIsProfile] = useState(false)
+
   
   return (
       <Container
