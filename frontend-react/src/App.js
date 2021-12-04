@@ -17,13 +17,13 @@ import SearchPage from "./pages/SearchPage";
 
 
 function App() {
-
+  let userId = localStorage.getItem("id")
   let auth = localStorage.getItem("token") ? true : false;
   const [loginok, setLoginok] = useState(auth);
 
   return (
     <Router>
-      <Header loginok={loginok} setLoginok={setLoginok} />
+      <Header loginok={loginok} setLoginok={setLoginok} userId={userId}/>
         <div className="main">
         <Routes>
             <Route exact path="/" element={<Home/>}/>
