@@ -19,7 +19,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import AuthService from "../Auth/AuthService";
 import { height } from '@mui/system';
 
-export default function MenuAppBar({loginok, setLoginok}) {  
+export default function MenuAppBar({loginok, setLoginok, userId}) {  
   let navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -148,7 +148,7 @@ export default function MenuAppBar({loginok, setLoginok}) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose} component={Link} to='/profile/:user_id'>Profile</MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to={'/profile/' + userId }>Profile</MenuItem>
                 <MenuItem onClick={handleClose} component={Link} to='/add-listing'>Add Listing</MenuItem>
                 <MenuItem onClick={handleClose} component={Link} to='/subscriptions'>Subscriptions</MenuItem>
                 <MenuItem onClick={() => { handleClose(); HandleLogout();}}>Log Out</MenuItem>
