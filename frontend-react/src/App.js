@@ -31,13 +31,8 @@ function App() {
             <Route path="/signup" element={<Signup loginok={loginok} />} />
             <Route path="/add-listing" element={<AddListing loginok={loginok}/>} />
             <Route path="/feed" element={<Feed loginok={loginok}/>} />
-<<<<<<< HEAD
-            <Route path="/profile/:user_id" element={<Profile loginok={loginok} setLoginok={setLoginok}/>} />
+            <Route path="/profile/:user_id" element={<Profile loginok={loginok} />} />
             {/* <Route path="/profile" element={<Profile loginok={loginok}/>} /> */}
-=======
-            {/* <Route path="/profile/:user_id" element={<Profile loginok={loginok} />} /> */}
-            <Route path="/profile" element={<Profile loginok={loginok}/>} />
->>>>>>> 58ad513b29d3d980316c71b2d7e9d613bdcfa911
             <Route path="/search" element={<SearchPage/>} />
         </Routes>
         </div>
