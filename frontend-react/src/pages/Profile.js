@@ -37,6 +37,7 @@ function Profile({loginok}) {
   const [loadedItems, setLoadedItems] = useState([]);
 
   useEffect(async () => {
+    const userId = window.location.href.split('/profile/')[1];
     const myItems = await fetch(`http://localhost:8081/api/items/myitems/${userId}`).then(res => { 
         return res.json(); 
       }).then(data => {
