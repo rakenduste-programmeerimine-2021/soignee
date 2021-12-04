@@ -32,17 +32,17 @@ function Profile({loginok}) {
     "email": ""
   })
   
-  const [userId, setUserId] = useState(localStorage.getItem("id"));
+  const [userId, setUserId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [loadedItems, setLoadedItems] = useState([]);
 
   useEffect(async () => {
-    const userId = window.location.href.split('/profile/')[1];
+    setUserId(window.location.href.split('/profile/')[1]);
     const myItems = await fetch(`http://localhost:8081/api/items/myitems/${userId}`).then(res => { 
         return res.json(); 
-      }).then(data => {
+    }).then(data => {
         setLoadedItems(data);
-      });
+    });
 
     const userProfile = await fetch(`http://localhost:8081/api/auth/profile/${userId}`).then(res => {
       return res.json();
