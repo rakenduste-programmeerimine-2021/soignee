@@ -1,6 +1,4 @@
 import "./index.css";
-
-
 import React, { useState } from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
@@ -35,7 +33,7 @@ function App() {
             <Route path="signup" element={<Signup loginok={loginok} />} />
             <Route path="add-listing" element={<AddListing loginok={loginok}/>} />
             <Route path="feed" element={<Feed loginok={loginok}/>} />
-            <Route path="profile" element={ <MyProfile loginok={loginok} myUserId={myUserId}/>} />
+            <Route path="profile" element={<MyProfile loginok={loginok} myUserId={myUserId}/>} />
             <Route path="profile/:user_id" element={<OtherProfile loginok={loginok}/>} />
             <Route path="search" element={<SearchPage/>} />
         </Routes>

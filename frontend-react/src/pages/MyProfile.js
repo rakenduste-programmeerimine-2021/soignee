@@ -22,7 +22,6 @@ function MyProfile({loginok, myUserId}) {
   const [loadedItems, setLoadedItems] = useState([]);
 
   useEffect(async () => {
-
     const myItems = await fetch(`http://localhost:8081/api/items/myitems/${myUserId}`).then(res => { 
         return res.json(); 
     }).then(data => {

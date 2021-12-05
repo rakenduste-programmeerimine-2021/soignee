@@ -92,7 +92,7 @@ export default function MenuAppBar({loginok, setLoginok}) {
         <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to="/">
-              <img id="logo" src="./Soignee.svg" alt="logo"  width= "100px" />
+              <img id="logo" src="/Soignee.svg" alt="logo"  width= "100px" />
             </Link>
           </Typography>
 
@@ -145,7 +145,7 @@ export default function MenuAppBar({loginok, setLoginok}) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose} component={Link} to='/profile/'>Profile</MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to='/profile'>Profile</MenuItem>
                 <MenuItem onClick={handleClose} component={Link} to='/add-listing'>Add Listing</MenuItem>
                 <MenuItem onClick={handleClose} component={Link} to='/subscriptions'>Subscriptions</MenuItem>
                 <MenuItem onClick={() => { handleClose(); HandleLogout();}}>Log Out</MenuItem>
