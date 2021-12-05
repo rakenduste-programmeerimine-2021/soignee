@@ -64,7 +64,7 @@ function ProfileItems({loadedItems}) {
           )) :
           <Container sx={{ py: 2 }} maxWidth="md">
             <Box sx={{ mt: 3, textAlign: 'center' }}>
-              You currently have no added listings!
+              User has no added listings!
             </Box>
           </Container>
         }

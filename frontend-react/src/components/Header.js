@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Navigate } from 'react-router';
+import { NavLink } from "react-router-dom";
 
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -9,17 +10,13 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-
 import AuthService from "../Auth/AuthService";
-import { height } from '@mui/system';
 
-export default function MenuAppBar({loginok, setLoginok, userId}) {  
+export default function MenuAppBar({loginok, setLoginok}) {  
   let navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -148,7 +145,7 @@ export default function MenuAppBar({loginok, setLoginok, userId}) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose} component={Link} to={'/profile/' + userId }>Profile</MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to='/profile/'>Profile</MenuItem>
                 <MenuItem onClick={handleClose} component={Link} to='/add-listing'>Add Listing</MenuItem>
                 <MenuItem onClick={handleClose} component={Link} to='/subscriptions'>Subscriptions</MenuItem>
                 <MenuItem onClick={() => { handleClose(); HandleLogout();}}>Log Out</MenuItem>

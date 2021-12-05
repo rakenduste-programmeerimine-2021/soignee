@@ -1,43 +1,25 @@
 import React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState, useEffect} from 'react';
-import { Navigate } from 'react-router';
-import { borders } from '@mui/system';
-
-import AuthService from "../Auth/AuthService";
+import { Navigate, useParams } from 'react-router';
 import ProfileInfo from '../components/ProfileInfo';
-import MyProfileItems from '../components/MyProfileItems';
+import MyProfileItems from '../components/ProfileItems';
 
 const theme = createTheme();
 
-
-
-function Profile({loginok}) {
-
+function OtherProfile({loginok}) {
+  let params = useParams();
+  let userId = params.user_id
   const [info, setInfo] = useState({
     "firstName": "",
     "lastName": "",
     "email": ""
   })
-  
-  const [userId, setUserId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [loadedItems, setLoadedItems] = useState([]);
 
   useEffect(async () => {
-    setUserId(window.location.href.split('/profile/')[1]);
     const myItems = await fetch(`http://localhost:8081/api/items/myitems/${userId}`).then(res => { 
         return res.json(); 
     }).then(data => {
@@ -79,4 +61,4 @@ function Profile({loginok}) {
 }
 
 
-export default Profile;
+export default OtherProfile;
