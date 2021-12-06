@@ -9,8 +9,9 @@ import MyProfileItems from '../components/ProfileItems';
 const theme = createTheme();
 
 function OtherProfile({loginok}) {
-  let params = useParams();
-  let userId = params.user_id
+
+  let { user_id } = useParams();
+
   const [info, setInfo] = useState({
     "firstName": "",
     "lastName": "",
@@ -21,13 +22,13 @@ function OtherProfile({loginok}) {
 
   useEffect(async () => {
     
-    const myItems = await fetch(`http://localhost:8081/api/items/myitems/${userId}`).then(res => { 
+    const myItems = await fetch(`http://localhost:8081/api/items/myitems/${user_id}`).then(res => { 
         return res.json(); 
     }).then(data => {
         setLoadedItems(data);
     });
 
-    const userProfile = await fetch(`http://localhost:8081/api/auth/profile/${userId}`).then(res => {
+    const userProfile = await fetch(`http://localhost:8081/api/auth/profile/${user_id}`).then(res => {
       return res.json();
     }).then(data => {
       setInfo({
@@ -47,7 +48,7 @@ function OtherProfile({loginok}) {
   }
   
   if (isLoading) {
-      return (<div>Laeb...</div>);
+      return (<div>Loading...</div>);
   }
 
   return (
@@ -56,7 +57,7 @@ function OtherProfile({loginok}) {
       </Container>
       <ProfileInfo info={info}/>
       <Container sx={{ py: 2 }} maxWidth="md">
-        <MyProfileItems loadedItems={loadedItems} userId={userId}/>
+        <MyProfileItems loadedItems={loadedItems} userId={user_id}/>
       </Container>
     </ThemeProvider>
     );

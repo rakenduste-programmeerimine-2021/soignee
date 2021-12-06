@@ -1,17 +1,15 @@
 const Image = require('../models/Upload')
 
-//const multer = require('multer');
-// var storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, 'uploads')
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, file.fieldname + '-' + Date.now())
-//     }
-// });
-// var upload = multer({ storage: storage });
-
-// upload.single('image')
+const multer = require('multer');
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now())
+    }
+});
+var upload = multer({ storage: storage });
 
 exports.getImages = async (req, res) => {
     const images = await Image.find({})
@@ -30,10 +28,12 @@ exports.uploadImage = async (req, res) => {
         }
     }
 
+    upload.single('image')
+
     const uploadedImage = new Image(newImage)
     
     const savedImage = await uploadedImage.save()
     
-    res.status(200).send(savedImage)
+    res.render('imagesPage', { items: items });
 }
   

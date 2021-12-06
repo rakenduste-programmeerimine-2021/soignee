@@ -22,7 +22,6 @@ export default function MenuAppBar({loginok, setLoginok}) {
     AuthService.logout()
     setLoginok(false);
     navigate("/", { replace: true });
-    //return (<Navigate to="/"/>)
   }
 
   const handleMenu = (event) => {
