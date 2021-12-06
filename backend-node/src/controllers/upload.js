@@ -1,21 +1,22 @@
-const Upload = require('../models/Upload')
+const Image = require('../models/Upload')
 
-// app.get('/', (req, res) => {
-//     imgModel.find({}, (err, items) => {
-//         if (err) {
-//             console.log(err);
-//             res.status(500).send('An error occurred', err);
-//         }
-//         else {
-//             res.render('imagesPage', { items: items });
-//         }
-//     });
+//const multer = require('multer');
+// var storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'uploads')
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, file.fieldname + '-' + Date.now())
+//     }
 // });
+// var upload = multer({ storage: storage });
+
+// upload.single('image')
 
 exports.getImages = async (req, res) => {
     const images = await Image.find({})
     
-    res.status(200).res.render('imagesPage', { items: items });
+    res.status(200).send(images)
 }
   
 exports.uploadImage = async (req, res) => {
@@ -28,11 +29,11 @@ exports.uploadImage = async (req, res) => {
             contentType: 'image/png'
         }
     }
-    
+
     const uploadedImage = new Image(newImage)
     
     const savedImage = await uploadedImage.save()
     
-    res.status(200).send(images)
+    res.status(200).send(savedImage)
 }
   

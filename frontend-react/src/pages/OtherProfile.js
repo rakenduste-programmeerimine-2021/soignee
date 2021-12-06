@@ -20,6 +20,7 @@ function OtherProfile({loginok}) {
   const [loadedItems, setLoadedItems] = useState([]);
 
   useEffect(async () => {
+    
     const myItems = await fetch(`http://localhost:8081/api/items/myitems/${userId}`).then(res => { 
         return res.json(); 
     }).then(data => {
@@ -36,6 +37,7 @@ function OtherProfile({loginok}) {
       })
     });
     setIsLoading(false);
+
   },[])
 
   if (!loginok) {

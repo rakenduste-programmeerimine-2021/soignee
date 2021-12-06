@@ -14,10 +14,6 @@ import OtherProfile from "./pages/OtherProfile";
 import MyProfile from "./pages/MyProfile";
 import SearchPage from "./pages/SearchPage";
 
-function getRandom() {
-  return Math.random();
-}
-
 function App() {
   let myUserId = localStorage.getItem("id")
   let auth = localStorage.getItem("token") ? true : false;

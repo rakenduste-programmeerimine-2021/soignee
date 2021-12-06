@@ -1,11 +1,8 @@
 import React from 'react';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState, useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from "axios";
+import { useState } from 'react';
 import { Navigate } from 'react-router';
-import Box from '@mui/material/Box';
 
 import AddListingForm from '../components/AddListingForm';
 

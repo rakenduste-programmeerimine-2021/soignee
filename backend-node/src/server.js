@@ -1,6 +1,5 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const multer = require('multer');
 const PORT = process.env.PORT || 3000
 const jwtAuth = require("./middleware/jwtAuth")
 require("dotenv").config()
@@ -45,14 +44,3 @@ mongoose
     console.log(err)
     process.exit(1)
   })
-
-var storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-      cb(null, 'uploads')
-  },
-  filename: (req, file, cb) => {
-      cb(null, file.fieldname + '-' + Date.now())
-  }
-});
-var upload = multer({ storage: storage });
-var imgModel = require('./models/Upload');

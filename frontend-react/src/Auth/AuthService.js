@@ -13,10 +13,10 @@ class AuthService {
       if (response.status === 200) {
         if (response.data.token) {
           localStorage.setItem("id", response.data.id);
-          localStorage.setItem("firstName", response.data.firstName);
-          localStorage.setItem("lastName", response.data.lastName);
-          localStorage.setItem("email", response.data.email);
-          localStorage.setItem("role", response.data.role);
+          // localStorage.setItem("firstName", response.data.firstName);
+          // localStorage.setItem("lastName", response.data.lastName);
+          // localStorage.setItem("email", response.data.email);
+          // localStorage.setItem("role", response.data.role);
           localStorage.setItem("token", response.data.token);
         }
       } else {
@@ -28,10 +28,10 @@ class AuthService {
 
   logout() {
     localStorage.removeItem("id");
-    localStorage.removeItem("firstName");
-    localStorage.removeItem("lastName");
-    localStorage.removeItem("email");
-    localStorage.removeItem("role");
+    // localStorage.removeItem("firstName");
+    // localStorage.removeItem("lastName");
+    // localStorage.removeItem("email");
+    // localStorage.removeItem("role");
     localStorage.removeItem("token");
 
   }
