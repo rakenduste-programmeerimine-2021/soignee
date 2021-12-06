@@ -16,24 +16,24 @@ exports.getImages = async (req, res) => {
     
     res.status(200).send(images)
 }
-  
-exports.uploadImage = async (req, res) => {
+   
+// exports.uploadImage = async (req, res) => {
     
-    const newImage = {
-        name: req.body.name,
-        desc: req.body.desc,
-        img: {
-            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-            contentType: 'image/png'
-        }
-    }
+//     const newImage = {
+//         name: req.body.name,
+//         desc: req.body.desc,
+//         img: {
+//             data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+//             contentType: 'image/png'
+//         }
+//     }
 
-    upload.single('image')
+//     upload.single('image')
 
-    const uploadedImage = new Image(newImage)
+//     const uploadedImage = new Image(newImage)
     
-    const savedImage = await uploadedImage.save()
+//     const savedImage = await uploadedImage.save()
     
-    res.render('imagesPage', { items: items });
-}
+//     res.render('imagesPage', { items: items });
+// }
   
