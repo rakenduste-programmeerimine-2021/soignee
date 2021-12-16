@@ -56,7 +56,7 @@ exports.createItem = async (req, res) => {
     model: req.body.model,
     quality: req.body.quality,
     description: req.body.description,
-    photo: req.file.path,
+    photo: req.file.filename,
     price: req.body.price,
     user: req.body.user
   }

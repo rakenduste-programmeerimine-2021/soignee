@@ -20,7 +20,7 @@ app.use(cors({origin: 'http://localhost:3000'}));
 app.use('/api/items', itemRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', postsRoutes);
-app.use('/api/imageUpload', uploadRoutes);
+app.use('/api/image', uploadRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
