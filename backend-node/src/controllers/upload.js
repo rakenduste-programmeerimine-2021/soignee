@@ -1,5 +1,5 @@
 const uploadFile = require("../middleware/upload");
-const uploadFileWithMongo = require("../middleware/uploadWithMongo")
+//const uploadFileWithMongo = require("../middleware/uploadWithMongo")
 
 const Image = require('../models/Upload')
 
@@ -17,7 +17,7 @@ exports.uploadImage = async (req, res) => {
         return res.status(400).send({ message: "Please upload a file!" });
         }
 
-        console.log(req.file)
+        console.log(req.file.path)
 
         res.status(200).send({
         message: "Uploaded the file successfully: " ,
@@ -29,25 +29,29 @@ exports.uploadImage = async (req, res) => {
     }
 };
 
-exports.uploadImageWithMongo = async (req, res) => {
-    try {
-        await uploadFileWithMongo(req, res);
-        
-        if (req.file == undefined) {
-        return res.status(400).send({ message: "Please upload a file!" });
-        }
+// exports.uploadImageWithMongo = async (req, res) => {
+//     try {
+//         await uploadFileWithMongo(req, res);
+//         console.log(req.file);
+    
+//         if (req.file == undefined) {
+//           return res.send({
+//             message: "You must select a file.",
+//           });
+//         }
+    
+//         return res.send({
+//           message: "File has been uploaded.",
+//         });
+//       } catch (error) {
+//         console.log(error);
+    
+//         return res.send({
+//           message: `Error when trying upload image: ${error}`,
+//         });
+//     }
+// };
 
-        console.log(req.file)
-
-        res.status(200).send({
-        message: "Uploaded the file successfully: " ,
-        });
-    } catch (err) {
-        res.status(500).send({
-        message: `Could not upload the file:. ${err}`,
-        });
-    }
-};
 
 
 // exports.uploadImage = async (req, res) => {

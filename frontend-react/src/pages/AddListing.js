@@ -31,12 +31,11 @@ function AddListing({loginok}) {
   //     return res.json(); 
   //     });
   // }
-
   function itemSubmitHandler(item) {
-    fetch('http://localhost:8081/api/imageUpload/upload-image', {
+    fetch('http://localhost:8081/api/items/create', {
         method: 'POST',
-        body: JSON.stringify(item),
-        headers: {'Content-Type':'application/json'}
+        body: item
+        //headers: {'Content-Type':'multipart/form-data'}
     }).then(res => { 
       if(res.status===200){
         setResultNotif('Successfully added a new listing!');

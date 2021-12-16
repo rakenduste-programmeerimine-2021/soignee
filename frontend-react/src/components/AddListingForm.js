@@ -17,12 +17,22 @@ function AddListingForm(props) {
     function formSubmitHandler(e){
         e.preventDefault();
         
+        const file = document.querySelector("input[type=file]").files[0];
+        const item = new FormData();
+        item.append("brandName", brandName);
+        item.append("model", model);
+        item.append("quality", 10);
+        item.append("description", description);
+        item.append("file", file);
+        item.append("price", price);
+        item.append("user", userId);
+
         // const item = {
         //     "brandName": brandName,
         //     "model": model,
         //     "quality": 10,
         //     "description": description,
-        //     "photo": userId+"/"+photos,
+        //     "file": photos,
         //     "price": price,
         //     "user": userId
         // }

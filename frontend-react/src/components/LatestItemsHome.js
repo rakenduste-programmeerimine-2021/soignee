@@ -52,7 +52,7 @@ function LatestItemsHome() {
                         pt: '0%',
                     }}
                     height="400"
-                    image={"/uploaded/" + photo}
+                    image={"../../backend-node/" + photo}
                     alt="image"
                     />
                     <CardContent sx={{ flexGrow: 1 }}>

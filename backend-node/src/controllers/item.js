@@ -1,6 +1,7 @@
 const Item = require('../models/Item')
+const uploadFile = require("../middleware/upload");
 
-exports.getItem = async (req, res) => {
+exports.getItemById = async (req, res) => {
   const { id } = req.params;
   
   const items = await Item.find({"_id":`${ id }`})
@@ -15,15 +16,15 @@ exports.getItems = async (req, res) => {
 }
 
 exports.getItemsLatest = async (req, res) => {
-  const items = await Item.find({}).sort({"createdAt": -1}).limit(9);
+  const items = await Item.find({}).sort({"createdAt": -1}).limit(9)
   
   res.status(200).send(items)
 }
 
 exports.getItemsMyItems = async (req, res) => {
-  const { id } = req.params;
+  const { userId } = req.params;
   
-  const items = await Item.find({"user":`${ id }`})
+  const items = await Item.find({"user":`${ userId }`})
   
   res.status(200).send(items)
 }
@@ -38,12 +39,24 @@ exports.getItemsFromSearch = async (req, res) => {
 
 exports.createItem = async (req, res) => {
 
+  try {
+    await uploadFile(req, res);
+    
+    if (req.file == undefined) {
+    return res.status(400).send({ message: "Please upload a file!" });
+    }
+  } catch (err) {
+      res.status(500).send({
+      message: `Could not upload the file:. ${err}`,
+      });
+  }
+
   const newItem = {
     brandName: req.body.brandName,
     model: req.body.model,
     quality: req.body.quality,
     description: req.body.description,
-    photo: req.body.photo,
+    photo: req.file.path,
     price: req.body.price,
     user: req.body.user
   }
