@@ -1,5 +1,13 @@
 const Item = require('../models/Item')
 
+exports.getItem = async (req, res) => {
+  const { id } = req.params;
+  
+  const items = await Item.find({"_id":`${ id }`})
+  
+  res.status(200).send(items)
+}
+
 exports.getItems = async (req, res) => {
   const items = await Item.find({})
   

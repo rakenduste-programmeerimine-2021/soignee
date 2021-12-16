@@ -17,15 +17,15 @@ function AddListingForm(props) {
     function formSubmitHandler(e){
         e.preventDefault();
         
-        const item = {
-            "brandName": brandName,
-            "model": model,
-            "quality": 10,
-            "description": description,
-            "photo": userId+"/"+photos,
-            "price": price,
-            "user": userId
-        }
+        // const item = {
+        //     "brandName": brandName,
+        //     "model": model,
+        //     "quality": 10,
+        //     "description": description,
+        //     "photo": userId+"/"+photos,
+        //     "price": price,
+        //     "user": userId
+        // }
         
         props.onAddItem(item);
     }
@@ -95,7 +95,7 @@ function AddListingForm(props) {
                 alignItems: 'center',
               }}
             >
-                <Input required accept="image/*" id="upload-photos" multiple type="file" sx={{
+                <Input required accept="image/*" id="upload-photos" multiple type="file" name='upload-photos' sx={{
                 width: '100%',
                 display: 'flex',
                 alignItems: 'center',
