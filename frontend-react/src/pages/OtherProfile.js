@@ -5,6 +5,7 @@ import { useState, useEffect} from 'react';
 import { Navigate, useParams } from 'react-router';
 import ProfileInfo from '../components/ProfileInfo';
 import MyProfileItems from '../components/ProfileItems';
+import { Box, Button } from '@mui/material';
 
 const theme = createTheme();
 
@@ -51,11 +52,18 @@ function OtherProfile({loginok}) {
       return (<div>Loading...</div>);
   }
 
+  //const isSubscribed = ? <Button variant="contained">Subscribe</Button> : <Button variant="outlined">Unsubscribe</Button>
+
   return (
     <ThemeProvider theme={theme}>
-      <Container sx={{ pt: 2, textAlign: "center" }} maxWidth="xs">
+      <Container sx={{ pt: 2, textAlign: "center"}} maxWidth="xs">
       </Container>
       <ProfileInfo info={info}/>
+      <Box sx={{margin: "0 0 50px", display: "flex", justifyContent: "center", textAlign: "center", alignItems: "center"}}>
+        {/* {isSubscribed} */}
+        <Button variant="contained">Subscribe</Button>
+        <Button variant="outlined">Unsubscribe</Button>
+      </Box>
       <Container sx={{ py: 2 }} maxWidth="md">
         <MyProfileItems loadedItems={loadedItems} userId={user_id}/>
       </Container>
