@@ -48,17 +48,20 @@ function OtherProfile({loginok}) {
       })
     });
 
+
+    //subscriptions TBD
     const getSubscriptions = await fetch(`http://localhost:8081/api/auth/profile/${user_id}`).then(res => {
       return res.json();
     }).then(data => {
       setFollowers(data.user.followers);
-      // let findSub = followers.find(data.user.followers === user_id);  
-      // console.log(findSub);
-      // if(findSub) {
-      //   setIsSubscribed(true);
-      // }else{
-      //   setIsSubscribed(false);
-      // }
+      let findSub = followers.find(function(sub, index){
+        console.log(findSub);
+        if (sub === user_id) {
+          return setIsSubscribed(true);
+        }else{
+          return setIsSubscribed(false);
+        }
+      }) 
     });
 
     setIsLoading(false);
