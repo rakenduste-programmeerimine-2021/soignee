@@ -11,19 +11,17 @@ function ViewListing({loginok}) {
 
   let { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
-  const [loadedItems, setLoadedItems] = useState([]);
+  const [loadedItem, setLoadedItem] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:8081/api/items/single/${id}`, {
-    }).then(res => { 
-        return res.json(); 
+    fetch('http://localhost:8081/api/items/single/' + id).then(res => { 
+    return res.json(); 
     }).then(data => {
-        setLoadedItems(data);
-        console.log(loadedItems);
-        
-    });
     setIsLoading(false);
-  },[])
+    setLoadedItem(data);
+    console.log(loadedItem);
+    });
+    },[])
 
   if (!loginok) {
     return (
