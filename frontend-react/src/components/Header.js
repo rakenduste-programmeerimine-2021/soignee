@@ -99,7 +99,7 @@ export default function MenuAppBar({loginok, setLoginok}) {
             </Link>
           </Typography>
 
-          {!hideSearch && (
+          {/* {!hideSearch && (
           <Box
           component="form"
           sx={{
@@ -120,7 +120,7 @@ export default function MenuAppBar({loginok, setLoginok}) {
             />
           </Search>
           </Box>
-          )}
+          )} */}
           {hideSearch && (
           <Search sx={{display: 'none'}}>
             <SearchIconWrapper>
@@ -161,7 +161,7 @@ export default function MenuAppBar({loginok, setLoginok}) {
               >
                 <MenuItem onClick={handleClose} component={Link} to='/profile'>Profile</MenuItem>
                 <MenuItem onClick={handleClose} component={Link} to='/add-listing'>Add Listing</MenuItem>
-                <MenuItem onClick={handleClose} component={Link} to='/subscriptions'>Subscriptions</MenuItem>
+                {/* <MenuItem onClick={handleClose} component={Link} to='/subscriptions'>Subscriptions</MenuItem> */}
                 <MenuItem onClick={() => { handleClose(); HandleLogout();}}>Log Out</MenuItem>
                 
               </Menu>

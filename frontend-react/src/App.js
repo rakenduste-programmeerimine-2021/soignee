@@ -26,7 +26,7 @@ function App() {
       <Header loginok={loginok} setLoginok={setLoginok}/>
         <div className="main">
         <Routes>
-            <Route exact path="/" element={<Home/>}/>
+            <Route exact path="/" element={<Home myUserId={myUserId}/>}/>
             <Route path="login" element={<Signin loginok={loginok} setLoginok={setLoginok} />} />
             <Route path="signup" element={<Signup loginok={loginok} />} />
             <Route path="add-listing" element={<AddListing loginok={loginok}/>} />
@@ -34,7 +34,7 @@ function App() {
             <Route path="item/edit/:id" element={<EditListing loginok={loginok} myUserId={myUserId}/>} />
             <Route path="feed" element={<Feed loginok={loginok}/>} />
             <Route path="profile" element={<MyProfile loginok={loginok} myUserId={myUserId}/>} />
-            <Route path="profile/:user_id" element={<OtherProfile loginok={loginok}/>} />
+            <Route path="profile/:user_id" element={<OtherProfile loginok={loginok} myUserId={myUserId}/>} />
             <Route path="search/:filter" element={<SearchPage/>} />
         </Routes>
         </div>

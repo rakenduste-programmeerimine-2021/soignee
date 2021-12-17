@@ -56,7 +56,7 @@ function MyProfile({loginok, myUserId}) {
       </Container>
       <ProfileInfo info={info}/>
       <Container sx={{ py: 2 }} maxWidth="md">
-        <MyProfileItems loadedItems={loadedItems} userId={myUserId}/>
+        <MyProfileItems loadedItems={loadedItems} myUserId={myUserId}/>
       </Container>
     </ThemeProvider>
     );

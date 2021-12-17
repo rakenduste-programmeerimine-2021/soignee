@@ -20,7 +20,7 @@ function makeDeleteRequest(itemId) {
   }); 
 }
 
-function Home() {
+function Home({myUserId}) {
   let navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState();
 
@@ -67,7 +67,7 @@ function Home() {
           </Container>
         </Box>
         <Container sx={{ py: 2 }} maxWidth="md">
-          <LatestItemsHome onDeleteItem={makeDeleteRequest}/>
+          <LatestItemsHome onDeleteItem={makeDeleteRequest} myUserId={myUserId}/>
         </Container>
     </ThemeProvider>
   );
