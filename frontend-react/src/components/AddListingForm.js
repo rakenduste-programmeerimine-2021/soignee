@@ -11,7 +11,6 @@ function AddListingForm(props) {
     const [model, setModel] = useState();
     const [description, setDescription] = useState();
     const [price, setPrice] = useState();
-    const [photos, setPhotos] = useState();
     const [userId, setUser] = useState(localStorage.id);    
 
     function formSubmitHandler(e){
@@ -26,16 +25,6 @@ function AddListingForm(props) {
         item.append("file", file);
         item.append("price", price);
         item.append("user", userId);
-
-        // const item = {
-        //     "brandName": brandName,
-        //     "model": model,
-        //     "quality": 10,
-        //     "description": description,
-        //     "file": photos,
-        //     "price": price,
-        //     "user": userId
-        // }
         
         props.onAddItem(item);
     }
@@ -113,7 +102,6 @@ function AddListingForm(props) {
                 margin: ' 20px auto 0',
                 cursor: 'pointer',
                 }}
-                onChange={e => setPhotos(e.target.value.replace(/^.*[\\\/]/, ''))}
                 />
 
               {/* <Box 

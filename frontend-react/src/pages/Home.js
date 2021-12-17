@@ -36,15 +36,6 @@ function Home() {
                 ADJECTIVE<br/>
                 dressed and groomed elegantly and with great care
             </Typography>
-            {/* <Stack
-              sx={{ pt: 4 }}
-              direction="row"
-              spacing={2}
-              justifyContent="center"
-            >
-              <Button variant="contained">Main call to action</Button>
-              <Button variant="outlined">Secondary action</Button>
-            </Stack> */}
             <Box
               component="form"
               sx={{
@@ -53,10 +44,7 @@ function Home() {
               noValidate
               autoComplete="off"
             >
-  
-              
               <TextField id="filled-basic" label="Search" variant="filled" />
-              
             </Box>
           </Container>
         </Box>
