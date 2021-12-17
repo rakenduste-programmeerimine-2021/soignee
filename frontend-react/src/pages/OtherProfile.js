@@ -49,7 +49,6 @@ function OtherProfile({loginok}) {
     });
 
 
-    //subscriptions TBD
     const getSubscriptions = await fetch(`http://localhost:8081/api/auth/profile/${user_id}`).then(res => {
       return res.json();
     }).then(data => {
@@ -82,13 +81,15 @@ function OtherProfile({loginok}) {
 
   //TBD subscriptions
   function subscribtionHandler(user_id) {
-    fetch('http://localhost:8081/api/auth/editUsersFollowers', {
+    fetch(`http://localhost:8081/api/auth//profiles/subscribe/${user_id}`, {
         method: 'POST',
-        body: user_id
+        body: user_id,
+        headers: {'Content-Type' : 'text/html'}
     }).then(res => { 
     if(res.status===200){
       console.log('Successfully subscribed!');
     }
+    console.log(res);
     return res.json(); 
     });
   }
