@@ -12,6 +12,7 @@ import AddListing from './pages/AddListing';
 import Feed from "./pages/Feed";
 import OtherProfile from "./pages/OtherProfile";
 import MyProfile from "./pages/MyProfile";
+import EditListing from "./pages/EditListing";
 import SearchPage from "./pages/SearchPage";
 import ViewListing from "./pages/ViewListing";
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="signup" element={<Signup loginok={loginok} />} />
             <Route path="add-listing" element={<AddListing loginok={loginok}/>} />
             <Route path="item/:id" element={<ViewListing loginok={loginok}/>} />
+            <Route path="item/edit/:id" element={<EditListing loginok={loginok} myUserId={myUserId}/>} />
             <Route path="feed" element={<Feed loginok={loginok}/>} />
             <Route path="profile" element={<MyProfile loginok={loginok} myUserId={myUserId}/>} />
             <Route path="profile/:user_id" element={<OtherProfile loginok={loginok}/>} />

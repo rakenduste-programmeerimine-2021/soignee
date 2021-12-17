@@ -1,11 +1,20 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import Link from "@mui/material/Link";
+import { Link } from 'react-router-dom';
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Card, CardActionArea, CardActions, CardContent, CardMedia } from '@mui/material';
+
+function makeDeleteRequest(itemId) {
+  fetch('http://localhost:8081/api/items/delete/' + itemId, 
+      { method: 'DELETE' }
+  ).then(res => { 
+      window.location.reload(true)
+      return res.json(); 
+  }); 
+}
 
 function ProfileItems({loadedItems}) {
   
@@ -45,8 +54,8 @@ function ProfileItems({loadedItems}) {
                   </CardContent>
               </CardActionArea>
               <CardActions>
-                  <Button size="small" component={Link} to={{ pathname: '/item/edit/' + _id }}>Edit</Button>
-                  <Button size="small" component={Link} to={{ pathname: '/item/delete/' + _id }}>Delete</Button>
+                <Button size="small" component={Link} to={{ pathname: '/item/edit/' + _id }}>Edit</Button>
+                <Button size="small" onClick={() => makeDeleteRequest(_id)}>Delete</Button>
               </CardActions>
               </Card>
           </Grid>

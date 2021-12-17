@@ -72,7 +72,7 @@ exports.updateItem = async (req, res) => {
   const { id } = req.params;
 
   const item = await Item.findOneAndUpdate({ _id: id }, 
-    { $set: { "name": req.body.name, "quality": req.body.quality, "approved": req.body.approved, "description": req.body.description, "user": req.body.user } }, 
+    { $set: { "brandName": req.body.brandName, "model": req.body.model, "price": req.body.price, "description": req.body.description } }, 
     {returnOriginal: false})
 
   if (!item) res.status(404).send("No item with that id found")

@@ -19,6 +19,15 @@ const styles = {
     },
   };
 
+function makeDeleteRequest(itemId) {
+    fetch('http://localhost:8081/api/items/delete/' + itemId, 
+        { method: 'DELETE' }
+    ).then(res => { 
+        window.location.reload(true)
+        return res.json(); 
+    }); 
+}
+
 function LatestItemsHome() {
     const [isLoading, setIsLoading] = useState(true);
     const [loadedItems, setLoadedItems] = useState([]);
@@ -71,7 +80,8 @@ function LatestItemsHome() {
                 </CardActionArea>
                 <CardActions>
                     <Button size="small" component={Link} to={{ pathname: '/item/edit/' + _id }}>Edit</Button>
-                    <Button size="small" component={Link} to={{ pathname: '/item/delete/' + _id }}>Delete</Button>
+                    {/* <Button size="small" component={Link} to={{ pathname: '/item/delete/' + _id }}>Delete</Button> */}
+                    <Button size="small" onClick={() => makeDeleteRequest(_id)}>Delete</Button>
                 </CardActions>
                 </Card>
             </Grid>

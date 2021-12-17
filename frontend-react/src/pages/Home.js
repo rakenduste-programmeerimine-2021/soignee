@@ -12,6 +12,14 @@ import LatestItemsHome from '../components/LatestItemsHome';
 
 const theme = createTheme();
 
+function makeDeleteRequest(itemId) {
+  fetch('http://localhost:8081/api/items/delete/' + itemId, 
+      { method: 'DELETE' }
+  ).then(res => { 
+      return res.json(); 
+  }); 
+}
+
 function Home() {
   let navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState();
@@ -59,7 +67,7 @@ function Home() {
           </Container>
         </Box>
         <Container sx={{ py: 2 }} maxWidth="md">
-          <LatestItemsHome/>
+          <LatestItemsHome onDeleteItem={makeDeleteRequest}/>
         </Container>
     </ThemeProvider>
   );

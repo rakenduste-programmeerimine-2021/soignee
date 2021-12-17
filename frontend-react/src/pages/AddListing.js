@@ -24,11 +24,15 @@ function AddListing({loginok}) {
         method: 'POST',
         body: item
     }).then(res => { 
-      if(res.status===200){
-        setResultNotif('Successfully added a new listing!');
-      }
-      return res.json(); 
-      });
+    if(res.status===200){
+      setResultNotif('Successfully added a new listing!');
+    }
+    return res.json(); 
+    });
+
+    setTimeout(function() {
+      window.location.reload(1);
+    }, 3000);
   }
 
   return (
