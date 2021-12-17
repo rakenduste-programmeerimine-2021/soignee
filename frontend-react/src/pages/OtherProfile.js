@@ -51,16 +51,25 @@ function OtherProfile({loginok}) {
   if (isLoading) {
       return (<div>Loading...</div>);
   }
-
-  //const isSubscribed = ? <Button variant="contained">Subscribe</Button> : <Button variant="outlined">Unsubscribe</Button>
+ 
+  function subscriptions(){
+    if(localStorage.userId != {user_id}){
+      return (
+        <Box sx={{margin: "0 0 50px", display: "flex", justifyContent: "center", textAlign: "center", alignItems: "center"}}>
+        const isSubscribed = ? <Button variant="contained">Subscribe</Button> :<Button variant="outlined">Unsubscribe</Button>;
+        </Box>)
+    }else{
+      return;
+    }
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <Container sx={{ pt: 2, textAlign: "center"}} maxWidth="xs">
       </Container>
       <ProfileInfo info={info}/>
+      {/* subscriptions(); */}
       <Box sx={{margin: "0 0 50px", display: "flex", justifyContent: "center", textAlign: "center", alignItems: "center"}}>
-        {/* {isSubscribed} */}
         <Button variant="contained">Subscribe</Button>
         <Button variant="outlined">Unsubscribe</Button>
       </Box>
