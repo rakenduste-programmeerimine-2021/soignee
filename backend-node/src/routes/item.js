@@ -8,7 +8,6 @@ router.get("/search/:filter", itemController.getItemsFromSearch)
 router.post("/create", itemController.createItem)
 router.put("/update/:id", itemController.updateItem)
 router.delete("/delete/:id", itemController.deleteItem)
-router.get("/latest", itemController.getItemsLatest)
-
+router.get("/latest", itemController.getItemsLatest) 
 
 module.exports = router

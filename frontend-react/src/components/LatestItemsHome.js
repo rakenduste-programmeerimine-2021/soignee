@@ -28,7 +28,7 @@ function makeDeleteRequest(itemId) {
     }); 
 }
 
-function LatestItemsHome() {
+function LatestItemsHome({myUserId}) {
     const [isLoading, setIsLoading] = useState(true);
     const [loadedItems, setLoadedItems] = useState([]);
 
@@ -47,7 +47,7 @@ function LatestItemsHome() {
     
     return (        
         <Grid container spacing={4}>
-            {loadedItems.map(({brandName, model, _id, price, photo}) => (
+            {loadedItems.map(({brandName, model, _id, price, photo, user}) => (
             <Grid item key={_id} xs={12} sm={6} md={4}>
                 <Card
                 sx={{ height: '100%', display: 'flex', flexDirection: 'column'}}
@@ -78,11 +78,12 @@ function LatestItemsHome() {
                         </Grid>
                     </CardContent>
                 </CardActionArea>
+                { myUserId === user && 
                 <CardActions>
                     <Button size="small" component={Link} to={{ pathname: '/item/edit/' + _id }}>Edit</Button>
-                    {/* <Button size="small" component={Link} to={{ pathname: '/item/delete/' + _id }}>Delete</Button> */}
                     <Button size="small" onClick={() => makeDeleteRequest(_id)}>Delete</Button>
                 </CardActions>
+                }
                 </Card>
             </Grid>
             ))}

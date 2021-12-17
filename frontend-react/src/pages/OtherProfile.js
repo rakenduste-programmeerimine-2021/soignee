@@ -9,15 +9,17 @@ import { Box, Button } from '@mui/material';
 
 const theme = createTheme();
 
-function OtherProfile({loginok}) {
+function OtherProfile({loginok, myUserId}) {
 
   let { user_id } = useParams();
 
   const [info, setInfo] = useState({
     "firstName": "",
     "lastName": "",
-    "email": ""
+    "email": "",
+    "followers": ""
   })
+
   const [isLoading, setIsLoading] = useState(true);
   const [loadedItems, setLoadedItems] = useState([]);
   const [isUser, setIsUser] = useState();
@@ -44,29 +46,50 @@ function OtherProfile({loginok}) {
       setInfo({
         "firstName": data.user.firstName,
         "lastName": data.user.lastName,
-        "email": data.user.email
+        "email": data.user.email,
+        "followers": [data.user.followers]
       })
+      if(data.user.followers.includes(myUserId)){
+        setIsSubscribed(true)
+      }
+      
     });
-
-
-    const getSubscriptions = await fetch(`http://localhost:8081/api/auth/profile/${user_id}`).then(res => {
-      return res.json();
-    }).then(data => {
-      setFollowers(data.user.followers);
-      let findSub = followers.find(function(sub, index){
-        console.log(findSub);
-        if (sub === user_id) {
-          return setIsSubscribed(true);
-        }else{
-          return setIsSubscribed(false);
-        }
-      }) 
-    });
-
-    setIsLoading(false);
-
+    setIsLoading(false)
   },[])
 
+  function followUser(){
+    const follower = {
+      "followers": myUserId
+    }
+    
+    fetch('http://localhost:8081/api/auth/profiles/addflw/' + user_id, {
+    method: 'PUT',
+    body: JSON.stringify(follower),
+    headers: {'Content-Type':'application/json'}
+    }).then(res => { 
+    if(res.status===200){
+      setIsSubscribed(true);
+    }
+    return res.json(); 
+    });
+  }
+
+  function unFollowUser(){
+    const follower = {
+      "followers": myUserId
+    }
+    
+    fetch('http://localhost:8081/api/auth/profiles/rmflw/' + user_id, {
+    method: 'PUT',
+    body: JSON.stringify(follower),
+    headers: {'Content-Type':'application/json'}
+    }).then(res => { 
+    if(res.status===200){
+      setIsSubscribed(false);
+    }
+    return res.json(); 
+    });
+  }
 
   if (!loginok) {
     return (
@@ -103,20 +126,19 @@ function OtherProfile({loginok}) {
       {!isUser && (
       <Box sx={{margin: "0 0 50px", display: "flex", justifyContent: "center", textAlign: "center", alignItems: "center"}}>
         {!isSubscribed &&(
-          <Button variant="contained" onClick={subscribtionHandler}>Subscribe</Button>
+          <Button variant="contained" onClick={() => followUser()}>Follow</Button>
         )}
         {isSubscribed &&(
-          <Button variant="outlined">Unsubscribe</Button>
+          <Button variant="outlined" onClick={() => unFollowUser()}>Unfollow</Button>
         )}
       </Box>
       )}
 
       <Container sx={{ py: 2 }} maxWidth="md">
-        <MyProfileItems loadedItems={loadedItems} userId={user_id}/>
+        <MyProfileItems loadedItems={loadedItems} userId={user_id} myUserId={myUserId}/>
       </Container>
     </ThemeProvider>
     );
 }
-
 
 export default OtherProfile;
