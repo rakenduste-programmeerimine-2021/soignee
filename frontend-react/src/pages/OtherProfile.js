@@ -21,6 +21,8 @@ function OtherProfile({loginok}) {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedItems, setLoadedItems] = useState([]);
   const [isUser, setIsUser] = useState();
+  const [followers, setFollowers] = useState([]);
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
   useEffect(async () => {
 
@@ -45,9 +47,25 @@ function OtherProfile({loginok}) {
         "email": data.user.email
       })
     });
+
+    const getSubscriptions = await fetch(`http://localhost:8081/api/auth/profile/${user_id}`).then(res => {
+      return res.json();
+    }).then(data => {
+      setFollowers({
+        "followers": data.user.followers
+    })//.then(() => {
+    //   if(user_id === followers.user.id){
+    //     setIsSubscribed(true);
+    //   }else{
+    //     setIsSubscribed(false);
+    //   }
+    // })
+    });
+
     setIsLoading(false);
 
   },[])
+
 
   if (!loginok) {
     return (
@@ -67,8 +85,12 @@ function OtherProfile({loginok}) {
 
       {!isUser && (
       <Box sx={{margin: "0 0 50px", display: "flex", justifyContent: "center", textAlign: "center", alignItems: "center"}}>
-        <Button variant="contained">Subscribe</Button>
-        <Button variant="outlined">Unsubscribe</Button>
+        {!isSubscribed &&(
+          <Button variant="contained">Subscribe</Button>
+        )}
+        {isSubscribed &&(
+          <Button variant="outlined">Unsubscribe</Button>
+        )}
       </Box>
       )}
 
