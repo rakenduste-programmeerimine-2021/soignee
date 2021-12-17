@@ -20,8 +20,15 @@ function OtherProfile({loginok}) {
   })
   const [isLoading, setIsLoading] = useState(true);
   const [loadedItems, setLoadedItems] = useState([]);
+  const [isUser, setIsUser] = useState();
 
   useEffect(async () => {
+
+    if(localStorage.getItem("id") != user_id){
+      setIsUser(false);
+    }else{
+      setIsUser(true);
+    }
     
     const myItems = await fetch(`http://localhost:8081/api/items/myitems/${user_id}`).then(res => { 
         return res.json(); 
@@ -51,28 +58,20 @@ function OtherProfile({loginok}) {
   if (isLoading) {
       return (<div>Loading...</div>);
   }
- 
-  function subscriptions(){
-    if(localStorage.userId != {user_id}){
-      return (
-        <Box sx={{margin: "0 0 50px", display: "flex", justifyContent: "center", textAlign: "center", alignItems: "center"}}>
-        const isSubscribed = ? <Button variant="contained">Subscribe</Button> :<Button variant="outlined">Unsubscribe</Button>;
-        </Box>)
-    }else{
-      return;
-    }
-  }
 
   return (
     <ThemeProvider theme={theme}>
       <Container sx={{ pt: 2, textAlign: "center"}} maxWidth="xs">
       </Container>
       <ProfileInfo info={info}/>
-      {/* subscriptions(); */}
+
+      {!isUser && (
       <Box sx={{margin: "0 0 50px", display: "flex", justifyContent: "center", textAlign: "center", alignItems: "center"}}>
         <Button variant="contained">Subscribe</Button>
         <Button variant="outlined">Unsubscribe</Button>
       </Box>
+      )}
+
       <Container sx={{ py: 2 }} maxWidth="md">
         <MyProfileItems loadedItems={loadedItems} userId={user_id}/>
       </Container>
