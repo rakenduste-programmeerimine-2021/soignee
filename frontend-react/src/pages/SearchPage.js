@@ -16,6 +16,12 @@ function SearchPage() {
   let { filter } = useParams();  
   const [searchQuery, setSearchQuery] = useState(filter);
 
+  function formSubmitHandler(e){
+    e.preventDefault();
+    
+
+  }
+
   return (
     <ThemeProvider theme={theme}>
     <CssBaseline />
@@ -47,8 +53,9 @@ function SearchPage() {
             }}
             noValidate
             autoComplete="off"
+            onSubmit={formSubmitHandler}
           >
-            <TextField id="filled-basic" label="Search" variant="filled" onChange={e => setSearchQuery(e.target.value)}/>
+            <TextField id="filled-basic" label="Search" variant="filled" onChange={e => setSearchQuery(e.target.value)} defaultValue={filter}/>
           </Box>
         </Container>
       </Box>
