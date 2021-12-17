@@ -81,7 +81,7 @@ function OtherProfile({loginok}) {
 
 
   //TBD subscriptions
-  function subscribeHandler(user_id) {
+  function subscribtionHandler(user_id) {
     fetch('http://localhost:8081/api/auth/editUsersFollowers', {
         method: 'POST',
         body: user_id
@@ -102,7 +102,7 @@ function OtherProfile({loginok}) {
       {!isUser && (
       <Box sx={{margin: "0 0 50px", display: "flex", justifyContent: "center", textAlign: "center", alignItems: "center"}}>
         {!isSubscribed &&(
-          <Button variant="contained">Subscribe</Button>
+          <Button variant="contained" onClick={subscribtionHandler}>Subscribe</Button>
         )}
         {isSubscribed &&(
           <Button variant="outlined">Unsubscribe</Button>
