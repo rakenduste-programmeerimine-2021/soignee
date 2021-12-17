@@ -33,7 +33,7 @@ function App() {
             <Route path="feed" element={<Feed loginok={loginok}/>} />
             <Route path="profile" element={<MyProfile loginok={loginok} myUserId={myUserId}/>} />
             <Route path="profile/:user_id" element={<OtherProfile loginok={loginok}/>} />
-            <Route path="search" element={<SearchPage/>} />
+            <Route path="search/:filter" element={<SearchPage/>} />
         </Routes>
         </div>
       <Footer/>

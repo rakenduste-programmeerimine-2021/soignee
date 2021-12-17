@@ -35,7 +35,6 @@ function AddListing({loginok}) {
     fetch('http://localhost:8081/api/items/create', {
         method: 'POST',
         body: item
-        //headers: {'Content-Type':'multipart/form-data'}
     }).then(res => { 
       if(res.status===200){
         setResultNotif('Successfully added a new listing!');
