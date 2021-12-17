@@ -41,7 +41,7 @@ function LatestItemsHome() {
             {loadedItems.map(({brandName, model, _id, price, photo}) => (
             <Grid item key={_id} xs={12} sm={6} md={4}>
                 <Card
-                sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                sx={{ height: '100%', display: 'flex', flexDirection: 'column'}}
                 >
                 <CardActionArea component={Link} to={{ pathname: '/item/' + _id }} >
                     <CardMedia
@@ -52,7 +52,6 @@ function LatestItemsHome() {
                         pt: '0%',
                     }}
                     height="200"
-                    margin="auto"
                     image={`http://localhost:8081/api/image/${photo}`}
                     alt="image"
                     />

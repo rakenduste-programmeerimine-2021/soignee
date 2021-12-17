@@ -32,8 +32,7 @@ exports.getItemsMyItems = async (req, res) => {
 exports.getItemsFromSearch = async (req, res) => {
   const { filter } = req.params;
   
-  //const items = await Item.find( { $or:[ {'brandName': {$regex : `${filter}`}, {'model': {$regex : `${filter}`} ] });
-  const items = await Item.find( { $or:[ {'brandName': {$regex : `^${filter}`,$options:'i'}}, {'model': {$regex : `^${filter}`,$options:'i'}} ] });
+  const items = await Item.find( { $or:[ {'brandName': { $regex : `${filter}`,$options:'ix'}}, {'model': {$regex : `${filter}`,$options:'ix'}} ] });
   
   res.status(200).send(items)
 }
