@@ -52,7 +52,7 @@ function OtherProfile({loginok}) {
       return (<div>Loading...</div>);
   }
 
-  //const isSubscribed = ? <Button variant="contained">Subscribe</Button> : <Button variant="outlined">Unsubscribe</Button>
+  // isSubscribed ? <Button variant="contained">Subscribe</Button> : <Button variant="outlined">Unsubscribe</Button>
 
   return (
     <ThemeProvider theme={theme}>

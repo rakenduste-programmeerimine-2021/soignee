@@ -56,5 +56,6 @@ router.post(
 
 router.get("/profile/:id", authController.getUser)
 router.get("/profiles", authController.getUsers)
+router.put("/profiles/edit/:id", authController.editUsersFollowers)
 
 module.exports = router;

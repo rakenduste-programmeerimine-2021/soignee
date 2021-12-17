@@ -81,3 +81,15 @@ exports.getUsers = async (req, res) => {
   
   res.status(200).send(users)
 }
+
+exports.editUsersFollowers = async (req, res) => {
+  const { id } = req.params;
+
+  const user = await User.findOneAndUpdate({ _id: id }, 
+    { $push: { "followers": req.body.followers } }, 
+    {returnOriginal: false})
+
+  if (!user) res.status(404).send("No item with that id found")
+
+  res.status(200).send(`Successfully updated the following item: \n ${user}`)
+}

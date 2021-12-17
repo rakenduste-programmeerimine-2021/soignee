@@ -16,7 +16,13 @@ import AuthService from "../Auth/AuthService";
 
 export default function MenuAppBar({loginok, setLoginok}) {  
   let navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState();
   const [anchorEl, setAnchorEl] = useState(null);
+
+  function formSubmitHandler(e){
+    e.preventDefault();
+    navigate("/search/" + searchQuery, { replace: true });
+  }
 
   async function HandleLogout() {
     AuthService.logout()
@@ -94,6 +100,15 @@ export default function MenuAppBar({loginok, setLoginok}) {
           </Typography>
 
           {!hideSearch && (
+          <Box
+          component="form"
+          sx={{
+            '& > :not(style)': { m: 1, width: '100%' },
+          }}
+          noValidate
+          autoComplete="off"
+          onSubmit={formSubmitHandler}
+          >
           <Search>
             <SearchIconWrapper>
               <SearchIcon />  
@@ -101,8 +116,10 @@ export default function MenuAppBar({loginok, setLoginok}) {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              onChange={e => setSearchQuery(e.target.value)}
             />
           </Search>
+          </Box>
           )}
           {hideSearch && (
           <Search sx={{display: 'none'}}>
