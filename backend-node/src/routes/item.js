@@ -3,7 +3,7 @@ const itemController = require("../controllers/item")
 
 router.get("/", itemController.getItems)
 router.get("/single/:id", itemController.getItemById)
-router.get("/myitems/:id", itemController.getItemsMyItems)
+router.get("/myitems/:userId", itemController.getItemsMyItems)
 router.get("/search/:filter", itemController.getItemsFromSearch)
 router.post("/create", itemController.createItem)
 router.put("/update/:id", itemController.updateItem)
