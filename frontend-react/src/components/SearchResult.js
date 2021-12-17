@@ -46,10 +46,8 @@ function SearchResult({filter}) {
                 >
                 <CardActionArea component={Link} to={{ pathname: '/item/' + _id }} >
                     <CardMedia
-                    // style = {{ height: 400, paddingTop: '0%'}}
                     component="img"
                     sx={{
-                        // 16:9
                         pt: '0%',
                     }}
                     height="200"

@@ -25,8 +25,9 @@ function ProfileItems({loadedItems}) {
                       // 16:9
                       pt: '0%',
                   }}
-                  height="400"
-                  image={"/uploaded/" + photo}
+                  height="200"
+                  margin="auto"
+                  image={`http://localhost:8081/api/image/${photo}`}
                   alt="image"
                   />
                   <CardContent sx={{ flexGrow: 1 }}>

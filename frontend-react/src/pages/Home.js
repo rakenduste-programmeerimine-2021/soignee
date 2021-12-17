@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
+import { Navigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 import LatestItemsHome from '../components/LatestItemsHome';
 
 const theme = createTheme();
 
 function Home() {
+  let navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState();
+
+  function formSubmitHandler(e){
+    e.preventDefault();
+    navigate("/search/" + searchQuery, { replace: true });
+  }
   
   return (
     <ThemeProvider theme={theme}>
@@ -43,8 +52,9 @@ function Home() {
               }}
               noValidate
               autoComplete="off"
+              onSubmit={formSubmitHandler}
             >
-              <TextField id="filled-basic" label="Search" variant="filled" />
+              <TextField id="filled-basic" label="Search" variant="filled" onChange={e => setSearchQuery(e.target.value)}/>
             </Box>
           </Container>
         </Box>

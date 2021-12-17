@@ -6,6 +6,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Navigate, useParams } from 'react-router';
 import TextField from '@mui/material/TextField';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 import SearchResult from '../components/SearchResult';
@@ -13,16 +14,14 @@ import SearchResult from '../components/SearchResult';
 const theme = createTheme();
 
 function SearchPage() {
+  let navigate = useNavigate();
   let { filter } = useParams();  
   const [searchQuery, setSearchQuery] = useState(filter);
 
   function formSubmitHandler(e){
     e.preventDefault();
-    
-    return (
-      <Navigate to={"/search/" + searchQuery} />
-    )
-
+    window.location.href="/search/" + searchQuery
+    // navigate("/search/" + searchQuery, { replace: true });
   }
 
   return (
