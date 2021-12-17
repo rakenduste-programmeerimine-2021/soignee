@@ -51,15 +51,14 @@ function OtherProfile({loginok}) {
     const getSubscriptions = await fetch(`http://localhost:8081/api/auth/profile/${user_id}`).then(res => {
       return res.json();
     }).then(data => {
-      setFollowers({
-        "followers": data.user.followers
-    })//.then(() => {
-    //   if(user_id === followers.user.id){
-    //     setIsSubscribed(true);
-    //   }else{
-    //     setIsSubscribed(false);
-    //   }
-    // })
+      setFollowers(data.user.followers);
+      // let findSub = followers.find(data.user.followers === user_id);  
+      // console.log(findSub);
+      // if(findSub) {
+      //   setIsSubscribed(true);
+      // }else{
+      //   setIsSubscribed(false);
+      // }
     });
 
     setIsLoading(false);
