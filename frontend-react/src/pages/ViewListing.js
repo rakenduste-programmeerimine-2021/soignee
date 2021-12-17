@@ -38,20 +38,17 @@ function ViewListing({loginok}) {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-      <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            overflow: 'hidden',
-          }}
-        >
+        <Box
+            sx={{
+              marginTop: 8,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              overflow: 'hidden',
+            }}
+          >
 
-
-
-
-      </Box>
+        </Box>
       </Container>
     </ThemeProvider>
   );
