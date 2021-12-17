@@ -79,6 +79,20 @@ function OtherProfile({loginok}) {
       return (<div>Loading...</div>);
   }
 
+
+  //TBD subscriptions
+  function subscribeHandler(user_id) {
+    fetch('http://localhost:8081/api/auth/editUsersFollowers', {
+        method: 'POST',
+        body: user_id
+    }).then(res => { 
+    if(res.status===200){
+      console.log('Successfully subscribed!');
+    }
+    return res.json(); 
+    });
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Container sx={{ pt: 2, textAlign: "center"}} maxWidth="xs">
