@@ -19,6 +19,9 @@ function SearchPage() {
   function formSubmitHandler(e){
     e.preventDefault();
     
+    return (
+      <Navigate to={"/search/" + searchQuery} />
+    )
 
   }
 
