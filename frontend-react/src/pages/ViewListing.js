@@ -1,44 +1,61 @@
 import React from 'react';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState } from 'react';
-import { Navigate } from 'react-router';
-
-import AddListingForm from '../components/AddListingForm';
+import Box from '@mui/material/Box';
+import { useState, useEffect } from 'react';
+import { Navigate, useParams } from 'react-router';
 
 const theme = createTheme();
 
-function AddListing({loginok}) {
-  
-  const [resultNotif, setResultNotif] = useState([]);
+function ViewListing({loginok}) {
+
+  let { id } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadedItems, setLoadedItems] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:8081/api/items/single/${id}`, {
+    }).then(res => { 
+        return res.json(); 
+    }).then(data => {
+        setLoadedItems(data);
+        console.log(loadedItems);
+        
+    });
+    setIsLoading(false);
+  },[])
 
   if (!loginok) {
     return (
       <Navigate to="/login" />
-      // navigate("/login", { replace: true })
-    )
+    ) 
   }
-
-  function itemSubmitHandler(item) {
-    fetch('http://localhost:8081/api/items/create', {
-        body: JSON.stringify(item),
-        headers: {'Content-Type':'application/json'}
-    }).then(res => { 
-      if(res.status===200){
-        setResultNotif('Successfully added a new listing!');
-      }
-      return res.json(); 
-      });
+  
+  if (isLoading) {
+      return (<div>Loading...</div>);
   }
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-        <AddListingForm onAddItem={itemSubmitHandler} resultNotif={resultNotif} setResultNotif={setResultNotif}/>
+      <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            overflow: 'hidden',
+          }}
+        >
+
+
+
+
+      </Box>
       </Container>
     </ThemeProvider>
   );
 }
 
 
-export default AddListing;
+export default ViewListing;
