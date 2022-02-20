@@ -1,26 +1,25 @@
-const express = require('express')
-
-const mongoose = require('mongoose')
-const PORT = process.env.PORT || 3000
-const jwtAuth = require("./middleware/jwtAuth")
 require("dotenv").config()
+
+const express = require('express')
+const mongoose = require('mongoose')
+const PORT = process.env.PORT
+const jwtAuth = require("./middleware/jwtAuth")
 
 const itemRoutes = require('./routes/item');
 const authRoutes = require('./routes/auth');
 const postsRoutes = require('./routes/posts');
-const uploadRoutes = require('./routes/upload');
+const photosRoutes = require('./routes/photos');
 
 const app = express()
 app.use(express.json());
 
- 
 var cors = require('cors');
 app.use(cors({origin: 'http://localhost:3000'}));
 
 app.use('/api/items', itemRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', postsRoutes);
-app.use('/api/image', uploadRoutes);
+app.use('/api/image', photosRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -35,7 +34,7 @@ app.get('*', (req, res) => {
 })
 
 mongoose
-  .connect(process.env.MONGODB_URI, {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
