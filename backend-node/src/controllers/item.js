@@ -46,7 +46,7 @@ exports.createItem = async (req, res) => {
     return res.status(400).send({ message: "Please upload a file!" });
     }
   } catch (err) {
-      res.status(500).send({
+    return res.status(500).send({
       message: `Could not upload the file:. ${err}`,
       });
   }
@@ -56,6 +56,7 @@ exports.createItem = async (req, res) => {
     model: req.body.model,
     quality: req.body.quality,
     description: req.body.description,
+    size: req.body.size,
     photo: req.file.filename,
     price: req.body.price,
     user: req.body.user
@@ -65,7 +66,7 @@ exports.createItem = async (req, res) => {
 
   const savedItem = await createdItem.save()
 
-  res.status(200).send(`yay ${savedItem._id}`)
+  res.status(200).send(`Item added! Id: ${savedItem._id}`)
 }
 
 exports.updateItem = async (req, res) => {

@@ -27,11 +27,11 @@ function ViewListing({loginok}) {
     });
     },[]);
 
-  if (!loginok) {
-    return (
-      <Navigate to="/login" />
-    ) 
-  }
+  // if (!loginok) {
+  //   return (
+  //     <Navigate to="/login" />
+  //   ) 
+  // }
   
   if (isLoading) {
       return (<div>Loading...</div>);

@@ -1,6 +1,5 @@
 const router = require("express").Router();
-const authController = require("../controllers/auth");
-const validationMiddleware = require("../middleware/validationMiddleware");
+const userController = require("../controllers/user");
 const { check } = require("express-validator");
 
 router.post(
@@ -14,8 +13,7 @@ router.post(
       .isLength({ min: 6 })
       .withMessage("Must be at least 6 characters long"),
   ],
-  validationMiddleware,
-  authController.login
+  userController.login
 );
 
 router.post(
@@ -44,19 +42,16 @@ router.post(
       .withMessage("Must be at least 6 characters long")
       .custom((value,{req, loc, path}) => {
         if (value !== req.body.pwConfirm) {
-            throw new Error("Passwords don't match");
-        } else {
-            return value;
+          throw new Error("Passwords don't match");
         }
       }),
   ],
-  validationMiddleware,
-  authController.signup
+  userController.signup
 );
 
-router.get("/profile/:id", authController.getUser)
-router.get("/profiles", authController.getUsers)
-router.put("/profiles/addflw/:id", authController.addUsersFollowers)
-router.put("/profiles/rmflw/:id", authController.rmUsersFollowers)
+router.get("/profile/:id", userController.getUser)
+router.get("/profiles", userController.getUsers)
+router.put("/profiles/addflw/:id", userController.addUsersFollowers)
+router.put("/profiles/rmflw/:id", userController.rmUsersFollowers)
 
 module.exports = router;

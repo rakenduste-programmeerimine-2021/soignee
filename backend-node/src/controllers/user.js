@@ -1,18 +1,16 @@
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const User = require("../models/User")
+require("dotenv").config()
 
 exports.login = async (req, res) => {
   const { email, password } = req.body
 
   try {
     const user = await User.findOne({ email })
-
     if (!user) throw Error("User with this e-mail does not exist")
-
     const isMatch = await bcrypt.compare(password, user.password)
     if (!isMatch) throw Error("I should not say that the password does not match")
-
     const userTemplate = {
       id: user.id,
       firstName: user.firstName,
@@ -20,28 +18,35 @@ exports.login = async (req, res) => {
       email: user.email,
       role: user.role
     }
-
-    const token = jwt.sign(userTemplate, process.env.JWT_SECRET)
+    const token = jwt.sign(userTemplate, process.env.JWT_SECRET, {
+      expiresIn: 60
+    })
     if (!token) throw Error("Something critical happened 99981811")
 
+    res.header(
+      "Access-Control-Allow-Headers",
+      "x-access-token, Origin, Content-Type, Accept"
+    );
     res.status(200).json({
-      token,
+      "x-access-token": token,
       ...userTemplate
     })
-
   } catch (e){
     res.status(400).json({ error: e.message })
   }
 }
 
 exports.signup = async (req, res) => {
-  const { firstName, lastName, email, password, role } = req.body
-
+  const { firstName, lastName, email, password, username, role } = req.body
   try {
-    const user = await User.findOne({ email })
+    const email_check = await User.findOne({ email })
 
-    if (user) throw Error("User with that e-mail already exists")
+    if (email_check) throw Error("User with that e-mail already exists")
 
+    let username_check = await User.findOne({ username })
+
+    if (username_check) throw Error("User with that username already exists")
+    
     const salt = await bcrypt.genSalt(10)
     if (!salt) throw Error("Something critical happened 483543875")
 
@@ -53,12 +58,12 @@ exports.signup = async (req, res) => {
       lastName,
       email,
       password: hash,
+      username,
       role,
     })
 
     const savedUser = await newUser.save()
     if (!savedUser) throw Error("Error saving user")
-
     res.status(200).json({ message: "User created successfully" })
   } catch (e) {
     res.status(400).json({ error: e.message })

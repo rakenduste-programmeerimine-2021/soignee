@@ -3,29 +3,31 @@ require("dotenv").config()
 const express = require('express')
 const mongoose = require('mongoose')
 const PORT = process.env.PORT
-const jwtAuth = require("./middleware/jwtAuth")
+const jwtMiddle = require("./middleware/jwtAuth")
 
 const itemRoutes = require('./routes/item');
-const authRoutes = require('./routes/auth');
-const postsRoutes = require('./routes/posts');
+const userRoutes = require('./routes/user');
+// const postsRoutes = require('./routes/posts');
 const photosRoutes = require('./routes/photos');
 
 const app = express()
 app.use(express.json());
 
+app.use(express.urlencoded({ extended: true }));
+
 var cors = require('cors');
 app.use(cors({origin: 'http://localhost:3000'}));
 
 app.use('/api/items', itemRoutes);
-app.use('/api/auth', authRoutes);
-app.use('/api/posts', postsRoutes);
+app.use('/api/auth', userRoutes);
+// app.use('/api/posts', postsRoutes);
 app.use('/api/image', photosRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get('/secret', jwtAuth, (req, res) => {
+app.get('/secret', jwtMiddle.verifyJWT, (req, res) => {
   res.send('Secret Hello World!')
 })
 

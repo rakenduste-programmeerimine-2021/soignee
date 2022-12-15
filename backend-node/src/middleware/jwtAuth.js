@@ -1,20 +1,24 @@
 const jwt = require("jsonwebtoken")
+const { TokenExpiredError } = jwt;
+require("dotenv").config()
 
-const jwtAuth = (req, res, next) => {
+exports.verifyJWT = (req, res, next) => {
   try {
     if (!req.headers["authorization"]) throw Error("Access denied");
-
-    // Authorization: Bearer token
-    const accesToken = req.headers.authorization.split(" ")[1]
-
-    const decoded = jwt.verify(accesToken, process.env.JWT_SECRET)
+    const token = req.headers.authorization.split(" ")[1]
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
     req.user = decoded
-
     next()
-
   } catch (e) {
     return res.status(401).send({ error: e.message })
   }
 }
 
-module.exports = jwtAuth
+exports.catchError = (err, res) => {
+  if (err instanceof TokenExpiredError) {
+    return res.status(401).send({ message: "Unauthorized! Access Token was expired!" });
+  }
+  return res.sendStatus(401).send({ message: "Unauthorized!" });
+}
+
+// module.exports = verifyJWT
